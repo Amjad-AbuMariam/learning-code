@@ -1,0 +1,73 @@
+<meta charset="utf-8">
+<title>Terminal Cheat Sheet</title>
+<link rel="stylesheet" href="../assets/course.css">
+
+<h1>Terminal Cheat Sheet</h1>
+<p class="subtitle">The 20 commands that cover 95% of daily work.</p>
+
+<h2>Orientation</h2>
+<table>
+<tr><th>Command</th><th>Mnemonic</th><th>What it does</th></tr>
+<tr><td><code>pwd</code></td><td>print working directory</td><td>where am I?</td></tr>
+<tr><td><code>ls</code></td><td>list</td><td>what's here? (<code>-l</code> details, <code>-a</code> hidden files)</td></tr>
+<tr><td><code>cd path</code></td><td>change directory</td><td>go there (<code>cd</code> alone = home, <code>cd ..</code> = up, <code>cd -</code> = back)</td></tr>
+</table>
+
+<h2>Paths</h2>
+<table>
+<tr><th>Symbol</th><th>Means</th></tr>
+<tr><td><code>/</code></td><td>the root — top of the whole filesystem</td></tr>
+<tr><td><code>~</code></td><td>your home: <code>/home/amjad</code></td></tr>
+<tr><td><code>.</code></td><td>the current directory</td></tr>
+<tr><td><code>..</code></td><td>the parent directory</td></tr>
+<tr><td>starts with <code>/</code></td><td>absolute path (works from anywhere)</td></tr>
+<tr><td>anything else</td><td>relative path (from where you are now)</td></tr>
+</table>
+
+<h2>Files &amp; folders</h2>
+<table>
+<tr><th>Command</th><th>What it does</th></tr>
+<tr><td><code>mkdir name</code></td><td>make directory (<code>-p</code> creates nested paths)</td></tr>
+<tr><td><code>touch file</code></td><td>create an empty file</td></tr>
+<tr><td><code>cp src dest</code></td><td>copy (<code>-r</code> for folders)</td></tr>
+<tr><td><code>mv src dest</code></td><td>move — also how you <em>rename</em></td></tr>
+<tr><td><code>rm file</code></td><td>delete — <strong>no trash, no undo</strong> (<code>-r</code> for folders)</td></tr>
+<tr><td><code>cat file</code></td><td>print file contents</td></tr>
+<tr><td><code>less file</code></td><td>page through a file (<code>q</code> to quit)</td></tr>
+<tr><td><code>head</code> / <code>tail</code></td><td>first / last 10 lines (<code>-n 25</code> for 25)</td></tr>
+</table>
+
+<h2>Finding things</h2>
+<table>
+<tr><th>Command</th><th>What it does</th></tr>
+<tr><td><code>grep -r "text" .</code></td><td>search file <em>contents</em> recursively</td></tr>
+<tr><td><code>find . -name "*.html"</code></td><td>search file <em>names</em></td></tr>
+<tr><td><code>man cmd</code> / <code>cmd --help</code></td><td>the manual — always available offline</td></tr>
+</table>
+
+<h2>Superpowers</h2>
+<table>
+<tr><th>Trick</th><th>What it does</th></tr>
+<tr><td><kbd>Tab</kbd></td><td>autocomplete paths/commands — use constantly, it prevents typos</td></tr>
+<tr><td><kbd>↑</kbd> / <kbd>Ctrl-R</kbd></td><td>previous commands / search command history</td></tr>
+<tr><td><kbd>Ctrl-C</kbd></td><td>kill the running command</td></tr>
+<tr><td><code>a | b</code></td><td>pipe: feed output of a into b — <code>ls | wc -l</code> counts files</td></tr>
+<tr><td><code>a &gt; file</code></td><td>redirect output into a file (<code>&gt;&gt;</code> appends)</td></tr>
+<tr><td><code>*</code></td><td>wildcard: <code>rm *.tmp</code>, <code>ls week-*</code></td></tr>
+</table>
+
+<h2>Glossary</h2>
+<table>
+<tr><th>Term</th><th>Meaning</th></tr>
+<tr><td>terminal</td><td>the window program that displays text I/O</td></tr>
+<tr><td>shell</td><td>the program inside it that interprets your commands (yours: bash)</td></tr>
+<tr><td>prompt</td><td>the text before your cursor, waiting for input</td></tr>
+<tr><td>argument / flag</td><td>extra words after a command; flags start with <code>-</code> and modify behavior</td></tr>
+<tr><td>directory</td><td>a folder — same thing, terminal dialect</td></tr>
+</table>
+
+<div class="footer-nav">
+Sources: <a href="https://www.gnu.org/software/bash/manual/">GNU Bash manual</a> ·
+Curriculum: <code>curriculum/coursebook/week-1/terminal-ws/</code><br>
+Lesson: <a href="../lessons/0003-terminal-basics.html">0003 — Terminal basics</a>
+</div>

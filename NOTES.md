@@ -5,3 +5,4 @@
 - Already knows: JS basics, DOM manipulation, 5kyu-level problem solving.
 - Follows GSG curriculum in ./curriculum/ — tie lessons to its weeks so he stays in sync.
 - Prefers building applications over abstract exercises.
+- Brand new to Linux (daily-drives Arch/Omarchy but the terminal itself is unfamiliar) — don't assume shell fluency; do assume he can learn fast.
