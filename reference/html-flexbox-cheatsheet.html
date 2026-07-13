@@ -1,0 +1,51 @@
+<meta charset="utf-8">
+<title>Semantic HTML &amp; Flexbox Cheat Sheet</title>
+<link rel="stylesheet" href="../assets/course.css">
+
+<h1>Semantic HTML &amp; Flexbox</h1>
+<p class="subtitle">Page skeleton and layout, at a glance.</p>
+
+<h2>Semantic page skeleton</h2>
+<pre><code>&lt;body&gt;
+  &lt;header&gt;        site banner: logo, title
+    &lt;nav&gt;         primary navigation links
+  &lt;/header&gt;
+  &lt;main&gt;          THE content — exactly one per page
+    &lt;section&gt;     thematic grouping, deserves a heading
+    &lt;article&gt;     self-contained: post, card, comment
+    &lt;aside&gt;       tangential: sidebar, related links
+  &lt;/main&gt;
+  &lt;footer&gt;        copyright, contact, small print
+&lt;/body&gt;</code></pre>
+<p>Rule of thumb: reach for <code>&lt;div&gt;</code> only when no semantic element fits — it means nothing to screen readers or search engines.</p>
+
+<h2>Flexbox — container properties</h2>
+<table>
+<tr><th>Property</th><th>Values</th><th>Controls</th></tr>
+<tr><td><code>display: flex</code></td><td>—</td><td>turns element into a flex container</td></tr>
+<tr><td><code>flex-direction</code></td><td>row · row-reverse · column · column-reverse</td><td>which way the main axis runs</td></tr>
+<tr><td><code>justify-content</code></td><td>flex-start · center · flex-end · space-between · space-around · space-evenly</td><td>distribution along the <strong>main</strong> axis</td></tr>
+<tr><td><code>align-items</code></td><td>stretch · flex-start · center · flex-end · baseline</td><td>alignment along the <strong>cross</strong> axis</td></tr>
+<tr><td><code>flex-wrap</code></td><td>nowrap · wrap · wrap-reverse</td><td>overflow onto new lines</td></tr>
+<tr><td><code>gap</code></td><td>length</td><td>space between items (use instead of margins)</td></tr>
+</table>
+
+<h2>Flexbox — item properties</h2>
+<table>
+<tr><th>Property</th><th>Meaning</th></tr>
+<tr><td><code>flex-grow</code></td><td>share of leftover space this item absorbs (0 = don't grow)</td></tr>
+<tr><td><code>flex-shrink</code></td><td>how much it gives up when space is tight (default 1)</td></tr>
+<tr><td><code>flex-basis</code></td><td>starting size before grow/shrink</td></tr>
+<tr><td><code>flex: 1</code></td><td>shorthand: grow 1, shrink 1, basis 0 — equal-width columns</td></tr>
+<tr><td><code>align-self</code></td><td>override align-items for one item</td></tr>
+</table>
+
+<h2>Mental model</h2>
+<p><strong>Main axis</strong> = the direction items flow (set by <code>flex-direction</code>). <strong>Cross axis</strong> = perpendicular. <code>justify-content</code> works on main, <code>align-items</code> on cross — when direction flips to <code>column</code>, their visual effects swap too.</p>
+
+<div class="footer-nav">
+Sources: <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox">MDN Flexbox basics</a> ·
+<a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">CSS-Tricks flexbox guide</a> ·
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element#content_sectioning">MDN sectioning elements</a><br>
+Lesson: <a href="../lessons/0002-semantic-html-flexbox.html">0002 — Semantic HTML &amp; Flexbox</a>
+</div>
