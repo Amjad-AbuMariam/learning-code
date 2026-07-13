@@ -1,0 +1,62 @@
+<meta charset="utf-8">
+<title>Lesson 1 — The Branch &amp; PR Workflow</title>
+<link rel="stylesheet" href="../assets/course.css">
+
+<h1>Lesson 1 — The Branch &amp; PR Workflow</h1>
+<p class="subtitle">~40 minutes · Curriculum: Week 1 (Fundamentals &amp; Toolkit)</p>
+
+<p><strong>Why this, first:</strong> freeCodeCamp taught you to <em>code</em>; it didn't teach you to <em>work like a developer</em>. In any job, code reaches production through branches and pull requests. Every later week of the GSG curriculum assumes this loop is muscle memory. Today you make it real by doing it once, end to end, on a repo you create.</p>
+
+<h2>The one idea</h2>
+<p><code>main</code> is sacred: it always works, and you never commit to it directly. All work happens on a short-lived <strong>branch</strong>, which reaches <code>main</code> only through a <strong>pull request</strong> — a reviewable diff. That's the whole professional workflow; everything else is detail. (Full command list: <a href="../reference/git-branch-pr-cheatsheet.html">cheat sheet</a>.)</p>
+
+<div class="aside">A branch in git is just a 41-byte file containing a commit hash — creating one is instant and free. That's why pros branch for everything, even a one-line fix.</div>
+
+<h2>Do it for real (~25 min)</h2>
+<p>Work through these in your terminal. Check each box as you go.</p>
+<ol class="steps">
+  <li>Create a repo on GitHub called <code>workflow-practice</code> (add a README so it isn't empty), then <code>git clone</code> it and <code>cd</code> in.</li>
+  <li>Run <code>git switch -c feat/add-bio</code>. Run <code>git status</code> — notice it names your new branch.</li>
+  <li>Edit <code>README.md</code>: add two lines about yourself.</li>
+  <li>Stage deliberately: <code>git add -p</code>, answer <code>y</code> to the hunk. Then <code>git diff --staged</code> to review exactly what will be committed.</li>
+  <li>Commit: <code>git commit -m "Add bio so visitors know whose repo this is"</code> — imperative mood, says <em>why</em>.</li>
+  <li>Publish: <code>git push -u origin feat/add-bio</code>.</li>
+  <li>On GitHub, open a <strong>pull request</strong> from your branch into <code>main</code>. Read the diff view — this is what a reviewer sees.</li>
+  <li>Merge the PR on GitHub, then locally: <code>git switch main &amp;&amp; git pull &amp;&amp; git branch -d feat/add-bio</code>.</li>
+  <li>Run <code>git log --oneline --graph</code> and find your merge in the history.</li>
+</ol>
+
+<h2>Check yourself</h2>
+<div class="quiz"
+  data-q="Your teammate asks you to fix a typo on the live site. What's your first command?"
+  data-opts='["git add -p then commit straight onto main quickly",
+              "git switch -c fix/typo to branch off from main",
+              "git push -u origin main to sync with the remote"]'
+  data-answer="1"
+  data-why="Even a one-line fix gets a branch and a PR — main is never committed to directly."></div>
+
+<div class="quiz"
+  data-q="What does git add -p give you that plain git add . does not?"
+  data-opts='["It reviews every change hunk by hunk before staging it",
+              "It stages the files and also pushes them to GitHub",
+              "It commits all files faster by skipping staging area"]'
+  data-answer="0"
+  data-why="Patch mode forces you to re-read each change — it catches stray debug code before it's committed."></div>
+
+<div class="quiz"
+  data-q="A pull request is best described as…"
+  data-opts='["a request to download the newest code from a remote",
+              "a reviewable proposal to merge one branch into another",
+              "a backup snapshot of your branch stored safely on GitHub"]'
+  data-answer="1"
+  data-why="The PR is the review checkpoint: a diff plus a conversation, gating what enters main."></div>
+
+<h2>Go deeper</h2>
+<p><strong>Primary source:</strong> <a href="https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell">Pro Git, ch. 3.1 — Branches in a Nutshell</a> (free, official, ~15 min). It shows what a branch actually <em>is</em> under the hood — with your CS background, this will click fast and make merges stop feeling like magic.</p>
+
+<div class="footer-nav">
+Reference: <a href="../reference/git-branch-pr-cheatsheet.html">Git branch &amp; PR cheat sheet</a><br>
+Stuck or curious? Ask your teacher (the agent) — that's what it's for. Questions like "what actually happens during a merge conflict?" make great follow-ups.
+</div>
+
+<script src="../assets/quiz.js"></script>

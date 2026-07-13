@@ -1,0 +1,52 @@
+<meta charset="utf-8">
+<title>Git Branch &amp; PR Cheat Sheet</title>
+<link rel="stylesheet" href="../assets/course.css">
+
+<h1>Git Branch &amp; PR Workflow</h1>
+<p class="subtitle">The loop you'll run on every feature, forever.</p>
+
+<h2>The cycle</h2>
+<pre><code>git switch main
+git pull                      # start from the latest main
+git switch -c feat/short-name # new branch per unit of work
+# ...edit files...
+git add -p                    # stage hunk by hunk, review as you go
+git commit -m "Add X so that Y"
+git push -u origin feat/short-name
+# open PR on GitHub → review → merge
+git switch main && git pull   # sync, then delete the branch
+git branch -d feat/short-name</code></pre>
+
+<h2>Commands by intent</h2>
+<table>
+<tr><th>I want to…</th><th>Command</th></tr>
+<tr><td>See what state I'm in</td><td><code>git status</code></td></tr>
+<tr><td>Start a new piece of work</td><td><code>git switch -c feat/name</code></td></tr>
+<tr><td>Review before staging</td><td><code>git diff</code> / <code>git add -p</code></td></tr>
+<tr><td>Review what's staged</td><td><code>git diff --staged</code></td></tr>
+<tr><td>Undo unstaged file changes</td><td><code>git restore file</code></td></tr>
+<tr><td>Unstage a file</td><td><code>git restore --staged file</code></td></tr>
+<tr><td>See branch history</td><td><code>git log --oneline --graph --all</code></td></tr>
+<tr><td>Publish branch first time</td><td><code>git push -u origin branch</code></td></tr>
+<tr><td>Update branch with main</td><td><code>git switch main; git pull; git switch -; git merge main</code></td></tr>
+</table>
+
+<h2>Commit message rule</h2>
+<p>Imperative mood, says <em>why</em> not just <em>what</em>: <code>Add validation so empty forms can't submit</code> — not <code>fixed stuff</code>.</p>
+
+<h2>Glossary</h2>
+<table>
+<tr><th>Term</th><th>Meaning</th></tr>
+<tr><td>branch</td><td>A movable pointer to a commit; a parallel line of work</td></tr>
+<tr><td>main</td><td>The shared, always-working branch; never commit to it directly</td></tr>
+<tr><td>remote / origin</td><td>The copy of the repo on GitHub</td></tr>
+<tr><td>pull request (PR)</td><td>A request to merge your branch, with a diff others can review</td></tr>
+<tr><td>merge</td><td>Combine one branch's commits into another</td></tr>
+<tr><td>staging area</td><td>The set of changes queued for the next commit</td></tr>
+</table>
+
+<div class="footer-nav">
+Source: <a href="https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell">Pro Git, ch. 3</a> ·
+<a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests">GitHub PR docs</a> ·
+Lesson: <a href="../lessons/0001-git-branch-pr-workflow.html">0001 — Git branch &amp; PR workflow</a>
+</div>
