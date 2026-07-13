@@ -1,0 +1,89 @@
+<meta charset="utf-8">
+<title>1-2 — Semantic HTML &amp; Accessibility</title>
+<link rel="stylesheet" href="../assets/course.css">
+
+<h1>1-2 — Semantic HTML &amp; Accessibility</h1>
+<p class="subtitle">~60 minutes · Week 1, Day 1 · Editor and browser only — no terminal, no git yet</p>
+
+<p><strong>Why this matters:</strong> the profile page you start here grows into your portfolio project at the end of this week. Semantic HTML is also a favorite interview topic.</p>
+
+<h2>Idea 1 — Tags that say what they mean</h2>
+<p>freeCodeCamp taught you the tags; the professional habit is choosing them for <em>meaning</em>. <code>&lt;div class="header"&gt;</code> and <code>&lt;header&gt;</code> look identical on screen — but only the second one is announced as a landmark by a <span class="term" data-tip="Software that reads a page aloud for blind and low-vision users. It navigates by semantic landmarks, not by looks.">screen reader</span>, understood by search engines, and instantly legible to the next developer.</p>
+
+<p>The skeleton to internalize — six tags plus one rule:</p>
+<pre><code>&lt;header&gt;   who/what this page is; usually contains &lt;nav&gt;
+&lt;nav&gt;      the page's main navigation links
+&lt;main&gt;     the unique content — exactly ONE per page
+&lt;section&gt;  a thematic grouping inside main
+&lt;article&gt;  self-contained content that would make sense alone
+&lt;footer&gt;   closing info: copyright, contact, small links</code></pre>
+
+<p><code>&lt;aside&gt;</code> (tangential content, e.g. a sidebar) exists too — it's on the <a href="../reference/html-flexbox-cheatsheet.html">cheat sheet</a>; look it up when you need it, don't memorize it now.</p>
+
+<h2>Idea 2 — Accessibility is checkable, not vibes</h2>
+<p>Semantic structure is the first half of <span class="term" data-tip="Designing pages usable by everyone, including people using screen readers, keyboard-only navigation, or high zoom.">accessibility</span>. The second half is verifying it: browsers ship an auditor called <strong>Lighthouse</strong> that scores your page and lists concrete fixes. You'll run it on your own page in a few minutes.</p>
+
+<h2>Do it for real (~35 min)</h2>
+<p>All in your editor and browser. (If you don't have an editor yet, install VS Code first — ask your teacher for help.)</p>
+<ol class="steps">
+  <li>In your file manager or editor, create the folder <code>~/code/week-1</code> (a <code>code</code> folder in your home folder, with <code>week-1</code> inside). You'll reuse it all week. <em>Success check:</em> in VS Code, File → Open Folder shows <code>week-1</code> empty and open.</li>
+  <li>Create a new file in it named <code>index.html</code>. <em>You should see</em> the file appear in the editor's sidebar.</li>
+  <li>Type (don't paste) the base document:
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;title&gt;My profile&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+  <em>Success check:</em> open the file in your browser (double-click it, or drag it onto a browser window). You see an empty page whose tab reads "My profile".</li>
+  <li>Inside <code>&lt;body&gt;</code>, add a <code>&lt;header&gt;</code> containing an <code>&lt;h1&gt;</code> with your name. Save, refresh the browser. <em>You should see</em> your name.</li>
+  <li>Inside the header, below the <code>&lt;h1&gt;</code>, add a <code>&lt;nav&gt;</code> with three links: <code>&lt;a href="#about"&gt;About&lt;/a&gt;</code>, likewise <code>#projects</code> and <code>#contact</code>. Refresh. <em>You should see</em> three links under your name.</li>
+  <li>After the header, add <code>&lt;main&gt;</code> containing one <code>&lt;section id="about"&gt;</code> with an <code>&lt;h2&gt;About&lt;/h2&gt;</code> and a paragraph about you. Refresh. <em>You should see</em> the About block under your nav.</li>
+  <li>Still inside <code>&lt;main&gt;</code>, add a <code>&lt;section id="projects"&gt;</code> with an <code>&lt;h2&gt;Projects&lt;/h2&gt;</code> and two <code>&lt;article&gt;</code>s, each holding an <code>&lt;h3&gt;</code> project name and a one-line description (freeCodeCamp projects count). Refresh. <em>You should see</em> both project blocks below About.</li>
+  <li>Close the page with a <code>&lt;footer id="contact"&gt;</code> containing your email or GitHub link. Refresh. <em>Success check:</em> clicking each nav link scrolls/jumps to its section.</li>
+  <li>Audit it — <strong>in Chrome or Chromium</strong> (Lighthouse ships in Chromium-based browsers; Firefox doesn't have it — if Firefox is your daily browser, open the page in Chromium just for audits): press <kbd>F12</kbd> → find the <strong>Lighthouse</strong> tab (it may hide behind <code>»</code>) → check only <strong>Accessibility</strong> → Analyze. <em>You should see</em> a score. Read the top suggestion — fix it if it's one you understand, ask your teacher if not.</li>
+</ol>
+
+<h2>Check yourself — fix the snippet</h2>
+<p>This page fragment renders fine but fails semantics review. Find all three problems before revealing:</p>
+<pre><code>&lt;div class="header"&gt;&lt;h1&gt;Salma's Recipes&lt;/h1&gt;&lt;/div&gt;
+&lt;main&gt;
+  &lt;section&gt;&lt;h2&gt;Latest&lt;/h2&gt;...&lt;/section&gt;
+&lt;/main&gt;
+&lt;main&gt;
+  &lt;section&gt;&lt;h2&gt;Popular&lt;/h2&gt;...&lt;/section&gt;
+&lt;/main&gt;
+&lt;div class="footer"&gt;© 2026&lt;/div&gt;</code></pre>
+<details class="reveal"><summary>Reveal the three problems</summary>
+<ol>
+  <li><code>&lt;div class="header"&gt;</code> should be <code>&lt;header&gt;</code> — a div announces nothing to assistive tech.</li>
+  <li>Two <code>&lt;main&gt;</code> elements — a page gets exactly one; merge the sections into it.</li>
+  <li><code>&lt;div class="footer"&gt;</code> should be <code>&lt;footer&gt;</code>.</li>
+</ol>
+</details>
+
+<div class="quiz"
+  data-q="Your page has a column of related-links next to the article. Which element fits best?"
+  data-opts='["aside — content tangentially related to the content around it",
+              "nav — any list of links belongs in a nav element",
+              "section — it is a thematic grouping of content"]'
+  data-answer="0"
+  data-why="Sidebars are the canonical aside. nav is for the page's primary navigation, not every link list."></div>
+
+<h2>Go deeper</h2>
+<p><strong>Primary sources from the curriculum's Day 1 reading list:</strong> <a href="https://www.a11ymatters.com/article/intro-html5-sectioning-elements/">Intro to HTML5 sectioning elements</a> and <a href="https://www.a11ymatters.com/article/beginners-guide-to-web-a11y/">Beginner's guide to web accessibility</a>.</p>
+
+<div class="feedback-ask">Finished? Tell your teacher (the agent) two things: ① Could you follow this lesson alone — 1 to 5? ② Where did you get stuck, if anywhere? Answers are recorded in <code>feedback/week-1.md</code> and improve the lesson for the next student.</div>
+
+<div class="footer-nav">
+Reference: <a href="../reference/html-flexbox-cheatsheet.html">HTML &amp; Flexbox cheat sheet</a> · Week map: <a href="1-index.html">Week 1 index</a><br>
+Previous: <a href="1-1-intro-to-web.html">1-1 How the Web Works</a> · Next: <a href="1-3-flexbox.html">1-3 Flexbox</a><br>
+Stuck or curious? Ask your teacher (the agent). "How does a screen reader actually announce my page?" is a great follow-up.
+</div>
+
+<script src="../assets/quiz.js"></script>
+<script src="../assets/tooltip.js"></script>

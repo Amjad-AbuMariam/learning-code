@@ -1,0 +1,79 @@
+<meta charset="utf-8">
+<title>1-4 — Terminal</title>
+<link rel="stylesheet" href="../assets/course.css">
+
+<h1>1-4 — Terminal</h1>
+<p class="subtitle">~60 minutes · Week 1, Day 2 · Source: curriculum <a href="../curriculum/coursebook/week-1/terminal-ws/README.md">terminal workshop</a> · No prior terminal experience assumed</p>
+
+<p><strong>Why this matters:</strong> the next lesson (git) and everything from Node onward lives in the terminal. One hour here removes friction from the entire course.</p>
+
+<h2>Idea 1 — Terminal vs shell, and the shape of a command</h2>
+<p>The <strong>terminal</strong> is the window; the <strong>shell</strong> (yours is <code>bash</code>) is the program inside it that reads a command, runs it, and prints the result. Every command has the same shape:</p>
+<pre><code>ls        -l        code
+│         │         │
+command   flag      argument
+(what)    (how)     (on what)</code></pre>
+<div class="aside">Two habits that make beginners look experienced: press <kbd>Tab</kbd> to autocomplete paths (if nothing completes, your path is wrong <em>before</em> you run it), and press <kbd>↑</kbd> to recall previous commands.</div>
+
+<h2>Idea 2 — You are always somewhere</h2>
+<p>All files live in one tree that starts at the <span class="term" data-tip="The topmost folder of the whole system, written as a single slash: /">root</span>. Your shell always sits at one spot in that tree — the <span class="term" data-tip="The folder your shell is 'in' right now; every relative path is read starting from here.">working directory</span>. Three shorthands do most of the work: <code>~</code> is your home folder, <code>.</code> is <em>here</em>, <code>..</code> is one level up. A path starting with <code>/</code> is <strong>absolute</strong> (works from anywhere); anything else is <strong>relative</strong> to where you are.</p>
+
+<h2>Do it for real (~40 min)</h2>
+<p>Type every command — no copy-paste; typing builds the recall. Predict each output <em>before</em> Enter.</p>
+
+<p><strong>Part A — Orient (pwd, ls, cd)</strong></p>
+<ol class="steps">
+  <li>Open a terminal. Type <code>pwd</code> and press Enter. <em>You should see</em> your home folder's absolute path — something like <code>/home/yourname</code>. (Check with <code>whoami</code> if unsure of your username.)</li>
+  <li>Type <code>ls</code>. <em>You should see</em> your home folders, including the <code>code</code> folder from lesson 1-2.</li>
+  <li>Type <code>ls -a</code>. <em>You should see</em> extra entries starting with a dot — hidden files. (You'll meet <code>.git</code> this way tomorrow.)</li>
+  <li>Type <code>cd code/week-1</code> then <code>pwd</code>. <em>You should see</em> the path ending in <code>/code/week-1</code>, and <code>ls</code> shows <code>index.html</code> — the file you built in lessons 1-2/1-3, reached from the terminal side.</li>
+  <li>Go home three ways, running <code>pwd</code> after each way. Way 1: <code>cd ..</code> then <code>cd ..</code> again (relative, one level at a time — you land home). Way 2: <code>cd ~/code/week-1</code> to jump back down, then plain <code>cd</code> (no argument always means home). Way 3: <code>cd ~/code/week-1</code> again, then <code>cd ~</code>. <em>Success check:</em> you can predict each <code>pwd</code> output before pressing Enter.</li>
+</ol>
+
+<p><strong>Part B — Create and inspect (mkdir, touch, echo, cat)</strong></p>
+<ol class="steps" start="6">
+  <li>From home: <code>mkdir -p code/terminal-practice</code>, then <code>cd code/terminal-practice</code>. <em>You should see</em> <code>pwd</code> ending in <code>terminal-practice</code>. (<code>-p</code> creates parents as needed and doesn't complain if they exist.)</li>
+  <li><code>touch notes.md</code> then <code>ls</code>. <em>You should see</em> <code>notes.md</code>.</li>
+  <li>A caution before the next command: <code>&gt;</code> <em>replaces</em> a file's entire content, so know what's in a file before redirecting into it — here <code>notes.md</code> is the empty file you just created, so nothing can be lost. Now: <code>echo "terminal day one" &gt; notes.md</code> then <code>cat notes.md</code>. <em>You should see</em> the line printed back. <code>&gt;&gt;</code> appends instead: <code>echo "second line" &gt;&gt; notes.md</code>, <code>cat notes.md</code> — <em>two lines now.</em></li>
+</ol>
+
+<p><strong>Part C — Move, copy, delete (mv, cp, rm)</strong></p>
+<ol class="steps" start="9">
+  <li><code>cp notes.md backup.md</code> then <code>ls</code>. <em>You should see</em> both files.</li>
+  <li><code>mv backup.md old-notes.md</code> then <code>ls</code>. <em>You should see</em> the file renamed — <code>mv</code> to a new name is how you rename.</li>
+  <li><code>mkdir archive</code>, <code>mv old-notes.md archive</code>, <code>ls archive</code>. <em>You should see</em> <code>old-notes.md</code> inside — same command, moving instead of renaming. No success message is normal: in the shell, <em>no news is good news</em>.</li>
+  <li>Deletion, carefully. <code>rm</code> has <strong>no trash can and no undo</strong>. The safe ritual: <code>ls</code> first, read what you're about to remove, then delete. Run <code>ls archive</code>, then <code>rm archive/old-notes.md</code>, then <code>ls archive</code> — <em>empty now.</em> The curriculum's safer alternative when unsure: <code>gio trash FILE</code> sends it to the desktop trash instead.</li>
+  <li>Clean up the whole practice folder: <code>cd ~</code>, <code>ls code</code> (confirm <code>terminal-practice</code> is what you think it is), then <code>rm -r code/terminal-practice</code> (<code>-r</code> = recursive, needed for folders). <em>Success check:</em> <code>ls code</code> no longer lists it, and <code>week-1</code> is untouched.</li>
+</ol>
+
+<div class="aside">You'll eventually meet <code>rm -rf</code> in the wild. The curriculum's own warning applies: it deletes without asking and without mercy — never run it on a path you haven't just <code>ls</code>'d, and never anywhere near <code>/</code>. When in doubt, <code>gio trash</code>.</div>
+
+<p>More commands (<code>man</code>, <code>xdg-open</code>, <code>cp -r</code>, quoting names with spaces) live on the <a href="../reference/terminal-cheatsheet.html">terminal cheat sheet</a> — look up, don't memorize.</p>
+
+<h2>Check yourself — predict the output</h2>
+<p>You are in your home folder (where step 13 left you — confirm with <code>pwd</code>). What does <code>cd code/terminal-practice</code> try to do, and what happens right now?</p>
+<details class="reveal"><summary>Reveal</summary>
+<p>It's a relative path: from home, into <code>code</code>, then into <code>terminal-practice</code> — which you deleted in step 13, so bash prints <code>No such file or directory</code>. Errors like this are navigation feedback, not failures.</p>
+</details>
+
+<div class="quiz"
+  data-q="What is the difference between &gt; and &gt;&gt; when sending output to a file?"
+  data-opts='["&gt; replaces the file&apos;s whole content; &gt;&gt; appends to its end",
+              "&gt; appends to the file; &gt;&gt; replaces it completely",
+              "&gt; is for text; &gt;&gt; is required for binary data"]'
+  data-answer="0"
+  data-why="One arrow replaces, two arrows append. Redirecting with &gt; onto a file you care about silently destroys it."></div>
+
+<h2>Go deeper</h2>
+<p><strong>Primary source:</strong> the curriculum's <a href="../curriculum/coursebook/week-1/terminal-ws/README.md">terminal workshop</a> — you now have the context to skim it fast. Superb free deep-dive: <a href="https://missing.csail.mit.edu/2020/course-shell/">MIT's Missing Semester — the shell</a>.</p>
+
+<div class="feedback-ask">Finished? Tell your teacher (the agent) two things: ① Could you follow this lesson alone — 1 to 5? ② Where did you get stuck, if anywhere? Answers are recorded in <code>feedback/week-1.md</code> and improve the lesson for the next student.</div>
+
+<div class="footer-nav">
+Reference: <a href="../reference/terminal-cheatsheet.html">Terminal cheat sheet</a> · Week map: <a href="1-index.html">Week 1 index</a><br>
+Previous: <a href="1-3-flexbox.html">1-3 Flexbox</a> · Next: <a href="1-5-git-github.html">1-5 Git &amp; GitHub</a><br>
+Stuck or curious? Ask your teacher (the agent). "What do the columns in ls -l mean?" is a great follow-up.
+</div>
+
+<script src="../assets/quiz.js"></script>
+<script src="../assets/tooltip.js"></script>

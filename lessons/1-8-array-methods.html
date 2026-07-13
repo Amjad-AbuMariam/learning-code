@@ -1,0 +1,65 @@
+<meta charset="utf-8">
+<title>1-8 — Array Methods</title>
+<link rel="stylesheet" href="../assets/course.css">
+
+<h1>1-8 — Array Methods</h1>
+<p class="subtitle">~60 minutes · Week 1, Day 3 · Source: curriculum <a href="../curriculum/coursebook/week-1/array-methods.md">array-methods.md</a></p>
+
+<p><strong>Why this matters:</strong> <code>map</code>, <code>filter</code>, and <code>reduce</code> are the vocabulary of every job interview and half of every React component you'll write in this course.</p>
+
+<h2>Idea 1 — Three families</h2>
+<p>The curriculum's method list is long; it collapses into three families. Learn the middle one deeply, recognize the others:</p>
+<table>
+  <tr><th>Family</th><th>Methods</th><th>What they do</th></tr>
+  <tr><td>Mutators</td><td><code>push</code> <code>pop</code> <code>shift</code> <code>unshift</code></td><td>Change the array in place (end / start)</td></tr>
+  <tr><td>Transformers</td><td><code>map</code> <code>filter</code> <code>reduce</code> (+ <code>forEach</code>)</td><td>Run your function per element; <strong>return a new array/value, original untouched</strong></td></tr>
+  <tr><td>Askers</td><td><code>includes</code> <code>some</code> <code>every</code> <code>indexOf</code> <code>findIndex</code> <code>Array.isArray</code></td><td>Answer a question — boolean or index. Recognize; look up on the <a href="../reference/javascript-cheatsheet.html">cheat sheet</a></td></tr>
+</table>
+
+<h2>Idea 2 — The transformers, one sentence each</h2>
+<pre><code>const nums = [3, 5, 4];
+
+nums.map(n =&gt; n * 2)              // [6, 10, 8]   same length, each element transformed
+nums.filter(n =&gt; n % 2 === 0)     // [4]          keeps elements passing your test
+nums.reduce((acc, n) =&gt; acc + n, 0) // 12         folds everything into one value
+nums.forEach(n =&gt; console.log(n)) // prints each; returns nothing — side effects only</code></pre>
+<div class="aside">The coursebook writes these with <code>function (num) { return … }</code>; today we write arrow functions — same behavior, less noise. Both forms will appear in code you read.</div>
+
+<h2>Do it for real (~35 min)</h2>
+<p>In the browser console. Type each, predicting the output first.</p>
+<ol class="steps">
+  <li>Mutators: <code>const arr = [1, 2, 3]</code>, then one per line — <code>arr.pop()</code>, <code>arr.push(3, 4)</code>, <code>arr.shift()</code>, <code>arr.unshift(1)</code>, checking <code>arr</code> after each. <em>Success check:</em> you end at <code>[1, 2, 3, 4]</code> and can say which end each method touched.</li>
+  <li>Prove transformers don't mutate: <code>const nums = [3, 5, 4]; nums.map(n =&gt; n * 2); nums</code>. <em>You should see</em> <code>nums</code> still <code>[3, 5, 4]</code> — the doubled array was returned, not stored.</li>
+  <li>Chain two: from <code>[1,2,3,4,5,6]</code>, produce the doubled evens <code>[4, 8, 12]</code> using <code>filter</code> then <code>map</code>. <em>Check:</em> exactly <code>[4, 8, 12]</code>.</li>
+  <li>The curriculum's reduce challenge: complete <code>function maxOf(nums) { return nums.reduce(/* your reducer here */); }</code> so it finds the <strong>maximum</strong>. <em>Check:</em> <code>maxOf([3, 41, 7])</code> returns <code>41</code> and <code>maxOf([-5, -2])</code> returns <code>-2</code>. (Hint: the accumulator carries the biggest-so-far.)</li>
+  <li>One asker: <code>[1, 2, 4].some(n =&gt; n % 2 === 1)</code> — predict, then run. <em>Check:</em> <code>true</code>, because of the 1.</li>
+</ol>
+
+<h2>Check yourself — predict the output</h2>
+<pre><code>const words = ["git", "css", "flexbox", "html"];
+const result = words.filter(w =&gt; w.length === 3).map(w =&gt; w.toUpperCase());</code></pre>
+<details class="reveal"><summary>Reveal</summary>
+<p><code>["GIT", "CSS"]</code> — filter keeps the three-letter words (order preserved), map uppercases the survivors. <code>words</code> itself is unchanged.</p>
+</details>
+
+<div class="quiz"
+  data-q="You need the total price of items in a cart array. Which method is built for collapsing an array into one value?"
+  data-opts='["reduce — the accumulator carries the running total across elements",
+              "map — transform each price and the total appears at the end",
+              "forEach — loop and console.log each price to add them up"]'
+  data-answer="0"
+  data-why="reduce is fold-into-one-value by design. map always returns an array of the same length; forEach returns nothing."></div>
+
+<h2>Go deeper</h2>
+<p><strong>Primary source:</strong> the curriculum's closing link, freeCodeCamp's <a href="https://www.freecodecamp.org/news/the-javascript-array-handbook/">JavaScript Array Handbook</a>.</p>
+
+<div class="feedback-ask">Finished? Tell your teacher (the agent) two things: ① Could you follow this lesson alone — 1 to 5? ② Where did you get stuck, if anywhere? Answers are recorded in <code>feedback/week-1.md</code> and improve the lesson for the next student.</div>
+
+<div class="footer-nav">
+Reference: <a href="../reference/javascript-cheatsheet.html">JavaScript cheat sheet</a> · Week map: <a href="1-index.html">Week 1 index</a><br>
+Previous: <a href="1-7-javascript-refresh.html">1-7 JavaScript Refresh</a> · Next: <a href="1-9-objects-operators-dom.html">1-9 Objects, Operators &amp; the DOM</a><br>
+Stuck or curious? Ask your teacher (the agent). "When is forEach the wrong choice?" is a great follow-up.
+</div>
+
+<script src="../assets/quiz.js"></script>
+<script src="../assets/tooltip.js"></script>

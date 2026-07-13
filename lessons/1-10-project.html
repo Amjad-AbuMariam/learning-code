@@ -1,0 +1,60 @@
+<meta charset="utf-8">
+<title>1-10 — Week Project: Portfolio</title>
+<link rel="stylesheet" href="../assets/course.css">
+
+<h1>1-10 — Week Project: Portfolio</h1>
+<p class="subtitle">Days 4–5 (this is where most of the week's hours go) · Source: curriculum <a href="../curriculum/coursebook/week-1/projects/portfolio.md">portfolio brief</a> + <a href="../curriculum/coursebook/week-1/projects/accessibility/README.md">accessibility &amp; responsiveness assignment</a></p>
+
+<p><strong>Why this matters:</strong> this is the first portfolio piece of the mission. Everything the week taught gets used together, under the professional workflow, reviewed like real code.</p>
+
+<h2>The brief</h2>
+<p>Build your ePortfolio as a multi-section site. From the curriculum's brief, it needs these five parts (pages or sections — your call as designer):</p>
+<ol>
+  <li><strong>About me</strong> — who you are, current status, aspirations. Your week-1 profile page is the seed; grow it, don't start over.</li>
+  <li><strong>Skills &amp; projects</strong> — cards linking your work (freeCodeCamp projects count today; this course will replace them fast).</li>
+  <li><strong>CV</strong> — a link or embedded summary.</li>
+  <li><strong>Reflections</strong> — what you've learned; this week is your first entry.</li>
+  <li><strong>Inspiration</strong> — people, sites, quotes that pull you forward.</li>
+</ol>
+
+<h2>Requirements (what "done" means)</h2>
+<ul class="check">
+  <li><input type="checkbox"> Semantic skeleton throughout — exactly one <code>&lt;main&gt;</code> per page, landmarks for header/nav/footer (lesson 1-2)</li>
+  <li><input type="checkbox"> Layout with flexbox (1-3), responsive mobile-first with at least one media query (1-6), viewport tag present</li>
+  <li><input type="checkbox"> Lighthouse accessibility score ≥ 90, and you understand every remaining warning (1-2)</li>
+  <li><input type="checkbox"> All work through the git loop (1-5): a GitHub repo named <code>portfolio</code>, every feature on a branch, merged by PR — <em>push repeatedly and frequently</em>, as the assignment says; no day-5 mega-commit</li>
+  <li><input type="checkbox"> At least one <code>&lt;script&gt;</code> using this week's JS: an array of projects rendered with <code>map</code>/<code>join</code>, or the skill counter from 1-9 grown up</li>
+</ul>
+
+<h2>How to work (~2 days)</h2>
+<ol class="steps">
+  <li><strong>Design first (Day 3's UX slot):</strong> sketch the layout before coding — Figma if you want the industry tool (<a href="https://www.youtube.com/watch?v=Cx2dkpBxst8&amp;list=PLXDU_eVOJTx7QHLShNqIXL1Cgbxj7HlN4&amp;index=2">curriculum's starter playlist</a>), paper if you don't. Alongside it, write three one-line <span class="term" data-tip="A need phrased from the visitor's side: 'As a recruiter, I want to scan projects in 10 seconds, so that I decide to keep reading.' The curriculum's user-journey outcome.">user stories</span> for your visitors — they decide your nav order. <em>Success check:</em> you can point at where each of the five parts lives and which story it serves, before writing a line.</li>
+  <li>Create the <code>portfolio</code> repo on GitHub with a README. In a terminal: <code>cd ~/code</code>, <code>git clone</code> + the repo's URL (1-5 exercise 3 form), <code>cd portfolio</code>. Copy your page in as the starting point: <code>cp ~/code/week-1/index.html ~/code/portfolio/</code>. <em>Check:</em> <code>ls</code> shows <code>index.html</code> and <code>README.md</code>. Commit and push the baseline on <code>main</code> — the one exception to the branch rule: <code>git add index.html</code>, <code>git commit -m "Import week-1 profile page as baseline"</code>, <code>git push</code>. <em>Check:</em> the file is visible on GitHub.</li>
+  <li>Work in vertical slices, one branch + PR each: <code>nav-and-layout</code>, <code>about-section</code>, <code>projects-section</code>, … Merge each before starting the next. <em>Check after each merge:</em> in the terminal, from <code>~/code/portfolio</code>: <code>git switch main</code>, <code>git pull</code>, then open <code>index.html</code> in the browser — the merged state always works.</li>
+  <li>Run Lighthouse (<kbd>F12</kbd> → Lighthouse tab in Chromium, exactly as in lesson 1-2) on your page after every merged slice, not at the end. Fixing accessibility incrementally is minutes; retrofitting it is days.</li>
+  <li><strong>Get reviewed.</strong> The curriculum's <a href="../curriculum/coursebook/week-1/codereviewintro.md">code review guide</a>: reviewers read your repo, raise issues, phrase suggestions as questions. Ask your teacher (the agent) to review each PR before you merge it — and answer its questions in the PR conversation, don't just fix silently. Etiquette works both ways.</li>
+</ol>
+
+<!-- agent-pair: acting as the code reviewer, follow codereviewintro.md etiquette strictly:
+     open-minded questions, no "this is bad code", link exact lines, one main point per review
+     plus at most two nits. Review against THIS lesson's requirements checklist only — do not
+     demand techniques the week didn't teach (no Grid, no CSS custom properties, no aria beyond
+     landmarks). Deliberately leave one improvable-but-acceptable thing unmentioned per review;
+     bring it up in the NEXT PR if it recurs — teaches pattern-spotting over checkbox-chasing.
+     If the student asks for pair programming on a slice, use the driving-test method from
+     pair-programming.md: student drives and narrates, agent only asks questions. -->
+
+<h2>Check yourself</h2>
+<p>Before calling the week done, close the loop from memory — no cheat sheet: branch → edit → stage → commit → push → PR → merge → sync → delete branch. If any step needed a lookup, tell your teacher; that's the retrieval signal it watches for.</p>
+
+<h2>Go deeper</h2>
+<p>The other Day 4–5 project options (<a href="../curriculum/coursebook/week-1/projects/quiz-app.md">quiz app</a>, <a href="../curriculum/coursebook/week-1/projects/todo.md">todo</a>, <a href="../curriculum/coursebook/week-1/projects/news-app.md">news app</a>) make great extra reps later. This week's <a href="../curriculum/coursebook/week-1/research-afternoon.md">research-afternoon topics</a> (BEM, regex, accessible navbars) slot naturally into portfolio polish.</p>
+
+<div class="feedback-ask">Project merged and reviewed? Tell your teacher (the agent) two things: ① Could you follow this week's lessons alone — 1 to 5 overall? ② Where did the week feel hardest? Answers are recorded in <code>feedback/week-1.md</code>. <em>Want the agent as reviewer or pair partner? It has instructions hidden in this page's source.</em></div>
+
+<div class="footer-nav">
+Week map: <a href="1-index.html">Week 1 index</a> · Previous: <a href="1-9-objects-operators-dom.html">1-9 Objects, Operators &amp; the DOM</a><br>
+Next week: testing with Jest — your terminal and git muscles from this week are the prerequisites.
+</div>
+
+<script src="../assets/tooltip.js"></script>

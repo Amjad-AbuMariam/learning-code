@@ -74,4 +74,27 @@ th { font-variant: small-caps; color: var(--muted); }
 .quiz button.opt.wrong { border-color: var(--bad); outline: 2px solid var(--bad); }
 .quiz .feedback { font-size: 0.95rem; color: var(--muted); min-height: 1.4em; margin-bottom: 0; }
 .footer-nav { margin-top: 3rem; border-top: 1px solid var(--rule); padding-top: 1rem; font-size: 0.95rem; color: var(--muted); }
+
+/* Jargon tooltips (used by tooltip.js): <span class="term" data-tip="...">word</span> */
+.term { border-bottom: 1px dotted var(--accent); cursor: help; position: relative; }
+.term::after {
+  content: attr(data-tip);
+  position: absolute; left: 0; bottom: 1.6em; z-index: 2;
+  width: max-content; max-width: 18rem;
+  background: var(--ink); color: var(--paper);
+  font-size: 0.82rem; line-height: 1.4; font-style: normal;
+  padding: 0.45rem 0.7rem; border-radius: 6px;
+  opacity: 0; visibility: hidden; transition: opacity 0.15s;
+}
+.term:hover::after, .term:focus::after, .term.open::after { opacity: 1; visibility: visible; }
+
+/* Reveal blocks for predict-the-output / fix-the-snippet checks */
+details.reveal { border: 1px solid var(--rule); border-radius: 8px; padding: 0.8rem 1.2rem; margin: 1rem 0; }
+details.reveal summary { cursor: pointer; color: var(--accent); }
+
+.feedback-ask {
+  margin-top: 2rem; padding: 0.9rem 1.2rem;
+  border: 1px dashed var(--accent); border-radius: 8px;
+  font-size: 0.95rem; color: var(--muted);
+}
 @media print { body { max-width: none; } .quiz button.opt { border: 1px solid #999; } }

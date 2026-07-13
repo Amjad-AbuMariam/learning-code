@@ -1,0 +1,74 @@
+<meta charset="utf-8">
+<title>1-9 — Objects, Operators &amp; the DOM</title>
+<link rel="stylesheet" href="../assets/course.css">
+
+<h1>1-9 — Objects, Operators &amp; the DOM</h1>
+<p class="subtitle">~60 minutes · Week 1, Day 4 · Source: curriculum Day 4 (JavaScript objects, comparison &amp; logical operators, DOM morning challenge)</p>
+
+<p><strong>Why this matters:</strong> objects are how every API this course touches represents data; the operators decide every <code>if</code>; and the DOM exercise reconnects your freeCodeCamp knowledge to the profile page you actually own.</p>
+
+<h2>Idea 1 — Objects: labeled data</h2>
+<pre><code>const project = {
+  name: "Profile page",
+  tech: ["html", "css"],
+  finished: false,
+  describe() { return `${this.name} (${this.tech.join(", ")})`; },
+};
+
+project.name          // "Profile page"   — dot access
+project["name"]       // same, bracket access — needed when the key is in a variable
+project.describe()    // "Profile page (html, css)"</code></pre>
+
+<h2>Idea 2 — Comparisons that don't lie</h2>
+<p>Always compare with <code>===</code> / <code>!==</code> (no type conversion). The loose forms <code>==</code> / <code>!=</code> convert types before comparing (<code>"5" == 5</code> is <code>true</code>) — a classic bug source you'll see in older code but shouldn't write. Logical operators: <code>&amp;&amp;</code> (both), <code>||</code> (either), <code>!</code> (not) — and they <span class="term" data-tip="a && b returns a if a is falsy, else b. a || b returns a if a is truthy, else b. They return one of the operands, not just true/false.">return operands, not booleans</span>, which is why <code>name || "anonymous"</code> works as a fallback.</p>
+
+<h2>Do it for real (~35 min)</h2>
+<p><strong>Part A — console (~15 min).</strong></p>
+<ol class="steps">
+  <li>Build a <code>me</code> object — same shape as the <code>project</code> example in Idea 1 — with your <code>name</code>, a <code>skills</code> array, and a <code>yearsOfCS</code> number. <em>Check:</em> <code>me.skills.length</code> returns the count you expect.</li>
+  <li>Predict then run: <code>"5" === 5</code>, <code>"5" == 5</code>, <code>0 || "fallback"</code>, <code>"" &amp;&amp; "unreached"</code>. <em>Success check:</em> <code>false</code>, <code>true</code>, <code>"fallback"</code>, <code>""</code> — and you can explain each.</li>
+  <li>Combine with 1-8: <code>me.skills.filter(s =&gt; s.length &gt; 3)</code>. <em>Check:</em> only the longer skill names.</li>
+</ol>
+
+<p><strong>Part B — DOM challenge on your page (~20 min).</strong> The curriculum's Day 4 sets a DOM manipulation challenge; here it targets your own page. The four DOM calls below are freeCodeCamp material — they're also in the <a href="../reference/javascript-cheatsheet.html">JavaScript cheat sheet</a>'s DOM section; skim it now if they feel far away. Open <code>~/code/week-1/index.html</code> in the browser, work in the console first, then make it permanent.</p>
+<ol class="steps" start="4">
+  <li>Grab your heading: <code>const h1 = document.querySelector("h1")</code>, then <code>h1.textContent</code>. <em>You should see</em> your name.</li>
+  <li>In the console, add a live skill counter:
+<pre><code>const skills = ["html", "css", "flexbox", "git"];
+const p = document.createElement("p");
+p.textContent = `Currently practicing ${skills.length} skills: ${skills.join(", ")}`;
+document.querySelector("#about").append(p);</code></pre>
+  <em>You should see</em> the paragraph appear in your About section. Refresh — <em>it's gone</em>: console changes aren't saved.</li>
+  <li>Make it permanent: in a terminal, <code>cd ~/code/week-1</code> (the repo you published in 1-6), start a branch with <code>git switch -c add-skill-counter</code>, then in your editor put the same code in a <code>&lt;script&gt;</code> tag just before <code>&lt;/body&gt;</code>. Refresh. <em>You should see</em> it survive reloads now.</li>
+  <li>Commit, push, open a PR, merge, sync — the full 1-5 loop, from memory, in the same terminal (still in <code>~/code/week-1</code>). <em>Success check:</em> the PR shows exactly one changed file, and after syncing, <code>git branch</code> lists only <code>main</code>.</li>
+</ol>
+
+<h2>Check yourself — predict the output</h2>
+<pre><code>const user = { name: "", city: "Gaza" };
+console.log(user.name || "anonymous");
+console.log(user.name === undefined);</code></pre>
+<details class="reveal"><summary>Reveal</summary>
+<p><code>"anonymous"</code> — empty string is falsy, so <code>||</code> falls through. Then <code>false</code> — <code>name</code> exists and is <code>""</code>, which is not <code>undefined</code>. (A key that's truly absent, like <code>user.email</code>, would give <code>undefined</code>.)</p>
+</details>
+
+<div class="quiz"
+  data-q="Why does the course insist on === instead of ==?"
+  data-opts='["== converts types before comparing, so \"5\" == 5 is true — silent bug fuel",
+              "=== is faster because it checks fewer possible cases",
+              "== is deprecated and throws a warning in modern browsers"]'
+  data-answer="0"
+  data-why="Loose equality's conversion rules are famously surprising. Strict equality means what it says: same type, same value."></div>
+
+<h2>Go deeper</h2>
+<p><strong>Primary sources (the curriculum's own Day 4 links):</strong> <a href="https://github.com/GSG-CA/Coding-Foundations-course/blob/master/coursebook/Week%2005/session-12/javascript-objects.md">JavaScript objects</a> and <a href="https://github.com/GSG-CA/Coding-Foundations-course/blob/master/coursebook/Week%2004/session-08/operators.md#comparison-operators">operators</a>.</p>
+
+<div class="feedback-ask">Finished? Tell your teacher (the agent) two things: ① Could you follow this lesson alone — 1 to 5? ② Where did you get stuck, if anywhere? Answers are recorded in <code>feedback/week-1.md</code> and improve the lesson for the next student.</div>
+
+<div class="footer-nav">
+Reference: <a href="../reference/javascript-cheatsheet.html">JavaScript cheat sheet</a> · Week map: <a href="1-index.html">Week 1 index</a><br>
+Previous: <a href="1-8-array-methods.html">1-8 Array Methods</a> · Next: <a href="1-10-project.html">1-10 Week Project</a><br>
+Stuck or curious? Ask your teacher (the agent). "What exactly is `this` inside describe()?" is a great follow-up.
+</div>
+
+<script src="../assets/quiz.js"></script>
+<script src="../assets/tooltip.js"></script>

@@ -1,0 +1,72 @@
+<meta charset="utf-8">
+<title>1-6 — Responsive Design</title>
+<link rel="stylesheet" href="../assets/course.css">
+
+<h1>1-6 — Responsive Design</h1>
+<p class="subtitle">~45 minutes · Week 1, Day 2 · Source: curriculum Day 2 <a href="https://github.com/GSG-CA/Responsive-Design-Workshop">Responsive Design workshop</a></p>
+
+<p><strong>Why this matters:</strong> the Week 1 project is judged on desktop <em>and</em> mobile views. Most of your visitors — and every interviewer who opens your portfolio on a phone — see the mobile layout first.</p>
+
+<h2>Idea 1 — One page, many screens</h2>
+<p>A responsive page adapts its layout to the screen instead of assuming a desktop. Two ingredients you already half-have:</p>
+<ol>
+  <li>The <span class="term" data-tip="The visible area of the page in the browser window. On phones, browsers pretend to be ~980px wide unless this tag says otherwise.">viewport</span> meta tag — without it, phones render a zoomed-out desktop page:
+<pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</code></pre></li>
+  <li>Layouts that flex — your <code>flex-wrap</code> from lesson 1-3 is already responsive behavior.</li>
+</ol>
+
+<h2>Idea 2 — Media queries, mobile-first</h2>
+<p>A <strong>media query</strong> applies CSS only when a condition holds:</p>
+<pre><code>/* base rules: written for small screens first */
+nav { flex-direction: column; }
+
+/* from 40rem wide and up, override */
+@media (min-width: 40rem) {
+  nav { flex-direction: row; }
+}</code></pre>
+<p><strong>Mobile-first</strong> means the plain rules serve the smallest screen and <code>min-width</code> queries add complexity as space grows — simpler than desktop-first with <code>max-width</code> overrides, because the base case is the simple layout. (BEM naming and deeper responsive patterns are this week's <a href="../curriculum/coursebook/week-1/research-afternoon.md">research-afternoon topics</a>.)</p>
+
+<h2>Do it for real (~25 min)</h2>
+<p>Two threads from here on: the CSS work, and putting <code>~/code/week-1</code> under git — like everything you'll ever build from now on.</p>
+<ol class="steps">
+  <li>Open a terminal: <code>cd ~/code/week-1</code> (confirm with <code>pwd</code>), then <code>git init</code>. <em>You should see</em> "Initialized empty Git repository…".</li>
+  <li>Snapshot the page as it stands: <code>git add index.html</code>, then <code>git commit -m "Profile page from lessons 1-2 and 1-3"</code>. <em>Check:</em> <code>git status</code> now says "nothing to commit, working tree clean".</li>
+  <li>Add the viewport meta tag inside <code>&lt;head&gt;</code>, next to <code>&lt;meta charset&gt;</code>. <em>Success check:</em> press <kbd>F12</kbd>, click the phone/tablet icon (device toolbar), pick a phone — text is readable, not a zoomed-out miniature.</li>
+  <li>Make the nav mobile-first: change your nav rule to <code>flex-direction: column;</code> (keep <code>display: flex; gap: 1rem;</code>). Refresh in phone view. <em>You should see</em> the links stacked vertically.</li>
+  <li>Add the desktop override at the end of your <code>&lt;style&gt;</code> block:
+<pre><code>@media (min-width: 40rem) {
+  nav { flex-direction: row; justify-content: flex-end; }
+}</code></pre>
+  <em>Success check:</em> drag the device-toolbar width (or toggle it off): links stack when narrow, become a right-aligned row when wide.</li>
+  <li>Give the project cards a minimum dignity: add <code>min-width: 15rem;</code> to <code>.cards article</code>. <em>You should see</em> (in phone view) the cards refuse to squeeze thinner and wrap into a column instead — <code>flex-wrap</code> from 1-3 doing the work.</li>
+  <li>Commit: <code>git add index.html</code>, <code>git commit -m "Make profile page responsive"</code>. <em>Check:</em> <code>git log --oneline</code> shows both commits.</li>
+  <li>Publish the repo — from memory of exercise 2 in lesson 1-5: create an empty <code>week-1</code> repository on GitHub (no checkboxes), then, in the same terminal (confirm <code>pwd</code> still ends in <code>/code/week-1</code>), run the three "push an existing repository" lines GitHub shows. <em>Success check:</em> your page's code is visible on GitHub. Lesson 1-9 opens a pull request against this very repo.</li>
+</ol>
+
+<h2>Check yourself — predict the output</h2>
+<p>Screen is 30rem wide. Base rule says <code>nav { flex-direction: column; }</code>; a <code>@media (min-width: 40rem)</code> block says <code>row</code>. Which applies, and what if the screen grows to 45rem?</p>
+<details class="reveal"><summary>Reveal</summary>
+<p>At 30rem the query condition is false, so the base <code>column</code> applies. At 45rem the query matches and its <code>row</code> rule wins because it comes later in the stylesheet. Mobile-first in one sentence: base = small screen, queries = progressively wider.</p>
+</details>
+
+<div class="quiz"
+  data-q="Your page looks fine on desktop but tiny and zoomed-out on a phone. First thing to check?"
+  data-opts='["The viewport meta tag — without it phones emulate a ~980px desktop",
+              "The flex-wrap property — nowrap forces the desktop layout",
+              "The min-width media query — phones need max-width instead"]'
+  data-answer="0"
+  data-why="No viewport tag means the phone renders a pretend-desktop and shrinks it. It is the single most common 'why is mobile broken' cause."></div>
+
+<h2>Go deeper</h2>
+<p><strong>Primary sources:</strong> the curriculum's <a href="https://github.com/GSG-CA/Responsive-Design-Workshop">Responsive Design workshop repo</a> and <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design">MDN — Responsive design</a>.</p>
+
+<div class="feedback-ask">Finished? Tell your teacher (the agent) two things: ① Could you follow this lesson alone — 1 to 5? ② Where did you get stuck, if anywhere? Answers are recorded in <code>feedback/week-1.md</code> and improve the lesson for the next student.</div>
+
+<div class="footer-nav">
+Reference: <a href="../reference/html-flexbox-cheatsheet.html">HTML &amp; Flexbox cheat sheet</a> · Week map: <a href="1-index.html">Week 1 index</a><br>
+Previous: <a href="1-5-git-github.html">1-5 Git &amp; GitHub</a> · Next: <a href="1-7-javascript-refresh.html">1-7 JavaScript Refresh</a><br>
+Stuck or curious? Ask your teacher (the agent). "How do I pick breakpoint values?" is a great follow-up.
+</div>
+
+<script src="../assets/quiz.js"></script>
+<script src="../assets/tooltip.js"></script>

@@ -1,0 +1,63 @@
+<meta charset="utf-8">
+<title>1-7 — JavaScript Refresh: Values &amp; Variables</title>
+<link rel="stylesheet" href="../assets/course.css">
+
+<h1>1-7 — JavaScript Refresh: Values &amp; Variables</h1>
+<p class="subtitle">~30 minutes · Week 1, Day 3 · Source: curriculum Day 3 (intro to JS, variables &amp; constants, data types)</p>
+
+<p><strong>Why this matters:</strong> Day 3 of the curriculum re-grounds JavaScript before array methods. You've done freeCodeCamp, so this is a <em>refresh with a skip door</em>, not a re-teach.</p>
+
+<h2>Checkpoint — try to skip this lesson</h2>
+<p>Open the browser console (<kbd>F12</kbd> → Console, from lesson 1-1) and predict each result <em>before</em> typing it:</p>
+<pre><code>typeof "42"
+typeof 42
+let x = 5; x = 10; x
+const y = 5; y = 10
+[1, 2] === [1, 2]
+typeof null</code></pre>
+<details class="reveal"><summary>Reveal expected results</summary>
+<pre><code>"string"
+"number"
+10                       // let allows reassignment
+TypeError                // const does not
+false                    // arrays compare by reference, not content
+"object"                 // a famous historical quirk — see below</code></pre>
+<p><strong>All six right (including the last two)?</strong> Skip ahead to <a href="1-8-array-methods.html">1-8 Array Methods</a> with a clear conscience. Any misses — the sections below cover exactly those.</p>
+</details>
+
+<h2>Idea 1 — Values have types; variables are labels</h2>
+<p>JavaScript's primitive types you'll actually meet daily: <code>string</code>, <code>number</code>, <code>boolean</code>, <code>undefined</code> (nothing assigned yet), <code>null</code> (deliberately nothing). Everything else — objects and arrays — is compared <em>by reference</em>: two arrays with the same content are still two different arrays. <code>typeof value</code> asks a value its type.</p>
+
+<h2>Idea 2 — const by default</h2>
+<p>Modern JS declares with <code>const</code> unless reassignment is genuinely needed, then <code>let</code>. You will still see <code>var</code> in older curriculum snippets — it's the legacy form with looser scoping; don't write new code with it. Note the nuance the console showed you: <code>const</code> stops <em>reassignment</em> of the label, not mutation of the object it points to — <code>const arr = []; arr.push(1)</code> is legal.</p>
+
+<h2>Do it for real (~15 min)</h2>
+<p>In the console:</p>
+<ol class="steps">
+  <li>Declare <code>const profile = "your name"</code> then try <code>profile = "other"</code>. <em>You should see</em> a TypeError naming the constant.</li>
+  <li>Run <code>const skills = ["html", "css"]; skills.push("git"); skills</code>. <em>You should see</em> all three items — mutation through a const label works.</li>
+  <li>Run <code>typeof null</code>. <em>You should see</em> <code>"object"</code> — a famous historical bug kept for compatibility; recognize it so it never confuses you.</li>
+</ol>
+
+<h2>Check yourself</h2>
+<div class="quiz"
+  data-q="Which declaration is the modern default for a value you never reassign?"
+  data-opts='["const — reassignment becomes an immediate, loud error",
+              "let — it is the newest keyword so always preferred",
+              "var — it works everywhere including old browsers"]'
+  data-answer="0"
+  data-why="const-by-default turns accidental reassignment into an error at the moment it happens instead of a silent bug later."></div>
+
+<h2>Go deeper</h2>
+<p><strong>Primary sources (the curriculum's own Day 3 links):</strong> <a href="https://github.com/GSG-CA/Coding-Foundations-course/blob/master/coursebook/Week%2004/session-08/variables-and-constants.md">variables &amp; constants</a> and <a href="https://github.com/GSG-CA/Coding-Foundations-course/blob/master/coursebook/Week%2004/session-08/data-types.md">data types</a>.</p>
+
+<div class="feedback-ask">Finished (or skipped via the checkpoint)? Tell your teacher (the agent) two things: ① Could you follow this lesson alone — 1 to 5? ② Where did you get stuck, if anywhere? Answers are recorded in <code>feedback/week-1.md</code>.</div>
+
+<div class="footer-nav">
+Reference: <a href="../reference/javascript-cheatsheet.html">JavaScript cheat sheet</a> · Week map: <a href="1-index.html">Week 1 index</a><br>
+Previous: <a href="1-6-responsive-design.html">1-6 Responsive Design</a> · Next: <a href="1-8-array-methods.html">1-8 Array Methods</a><br>
+Stuck or curious? Ask your teacher (the agent). "Why does typeof null say object?" is a great follow-up.
+</div>
+
+<script src="../assets/quiz.js"></script>
+<script src="../assets/tooltip.js"></script>

@@ -1,0 +1,75 @@
+<meta charset="utf-8">
+<title>JavaScript Cheat Sheet</title>
+<link rel="stylesheet" href="../assets/course.css">
+
+<h1>JavaScript Cheat Sheet</h1>
+<p class="subtitle">Week 1 scope: values, variables, operators, arrays, objects. Look up, don't memorize.</p>
+
+<h2>Declarations</h2>
+<table>
+<tr><th>Keyword</th><th>Use</th></tr>
+<tr><td><code>const</code></td><td>default — no reassignment (mutating the object it points to is still allowed)</td></tr>
+<tr><td><code>let</code></td><td>only when reassignment is genuinely needed</td></tr>
+<tr><td><code>var</code></td><td>legacy — you'll read it in older code, don't write it</td></tr>
+</table>
+
+<h2>Types &amp; comparisons</h2>
+<table>
+<tr><th>Expression</th><th>Result / rule</th></tr>
+<tr><td><code>typeof x</code></td><td><code>"string" | "number" | "boolean" | "undefined" | "object" | "function"</code></td></tr>
+<tr><td><code>typeof null</code></td><td><code>"object"</code> — historical bug, kept forever</td></tr>
+<tr><td><code>=== / !==</code></td><td>strict: same type AND value. Always use these</td></tr>
+<tr><td><code>== / !=</code></td><td>loose: converts types first (<code>"5" == 5</code> → true). Avoid</td></tr>
+<tr><td><code>[1] === [1]</code></td><td><code>false</code> — objects/arrays compare by reference, not content</td></tr>
+<tr><td>falsy values</td><td><code>false 0 "" null undefined NaN</code> — everything else is truthy</td></tr>
+</table>
+
+<h2>Logical operators (they return an operand)</h2>
+<table>
+<tr><th>Expression</th><th>Returns</th></tr>
+<tr><td><code>a &amp;&amp; b</code></td><td><code>a</code> if falsy, else <code>b</code></td></tr>
+<tr><td><code>a || b</code></td><td><code>a</code> if truthy, else <code>b</code> — classic fallback: <code>name || "anonymous"</code></td></tr>
+<tr><td><code>a ?? b</code></td><td><code>b</code> only when <code>a</code> is <code>null</code>/<code>undefined</code> (safer fallback: keeps <code>0</code> and <code>""</code>)</td></tr>
+<tr><td><code>!a</code></td><td>boolean negation</td></tr>
+</table>
+
+<h2>Array methods by family</h2>
+<table>
+<tr><th>Family</th><th>Method</th><th>Returns</th><th>Mutates?</th></tr>
+<tr><td rowspan="4">mutators</td><td><code>push(x)</code> / <code>pop()</code></td><td>new length / removed item</td><td>yes — end</td></tr>
+<tr><td><code>unshift(x)</code> / <code>shift()</code></td><td>new length / removed item</td><td>yes — start</td></tr>
+<tr><td><code>sort(fn)</code></td><td>the same array</td><td>yes</td></tr>
+<tr><td><code>splice(i, n)</code></td><td>removed items</td><td>yes</td></tr>
+<tr><td rowspan="4">transformers</td><td><code>map(fn)</code></td><td>new array, same length, transformed</td><td>no</td></tr>
+<tr><td><code>filter(fn)</code></td><td>new array, only elements passing the test</td><td>no</td></tr>
+<tr><td><code>reduce(fn, init)</code></td><td>single value (fn gets <code>(accumulator, element)</code>)</td><td>no</td></tr>
+<tr><td><code>forEach(fn)</code></td><td><code>undefined</code> — side effects only</td><td>no</td></tr>
+<tr><td rowspan="5">askers</td><td><code>includes(x)</code></td><td>boolean</td><td>no</td></tr>
+<tr><td><code>some(fn)</code> / <code>every(fn)</code></td><td>boolean — any / all pass</td><td>no</td></tr>
+<tr><td><code>indexOf(x)</code></td><td>first index or <code>-1</code></td><td>no</td></tr>
+<tr><td><code>find(fn)</code> / <code>findIndex(fn)</code></td><td>first matching element / its index (<code>undefined</code> / <code>-1</code>)</td><td>no</td></tr>
+<tr><td><code>Array.isArray(x)</code></td><td>boolean (static — called on <code>Array</code> itself)</td><td>no</td></tr>
+</table>
+
+<h2>Objects</h2>
+<table>
+<tr><th>Pattern</th><th>Example</th></tr>
+<tr><td>literal</td><td><code>const o = { name: "x", tags: [1, 2] }</code></td></tr>
+<tr><td>dot access</td><td><code>o.name</code></td></tr>
+<tr><td>bracket access</td><td><code>o["name"]</code> — required when the key lives in a variable</td></tr>
+<tr><td>method + this</td><td><code>{ hi() { return `hi ${this.name}` } }</code></td></tr>
+<tr><td>keys / values</td><td><code>Object.keys(o)</code>, <code>Object.values(o)</code> — arrays, so 1-8 methods apply</td></tr>
+<tr><td>template string</td><td><code>`${expr} interpolated`</code> — backticks, not quotes</td></tr>
+</table>
+
+<h2>DOM one-liners (week-1 scope)</h2>
+<table>
+<tr><th>Task</th><th>Code</th></tr>
+<tr><td>grab one element</td><td><code>document.querySelector("css selector")</code></td></tr>
+<tr><td>read/set its text</td><td><code>el.textContent</code></td></tr>
+<tr><td>create + attach</td><td><code>const p = document.createElement("p"); parent.append(p)</code></td></tr>
+</table>
+
+<div class="footer-nav">
+Used by lessons <a href="../lessons/1-7-javascript-refresh.html">1-7</a>, <a href="../lessons/1-8-array-methods.html">1-8</a>, <a href="../lessons/1-9-objects-operators-dom.html">1-9</a> · Week map: <a href="../lessons/1-index.html">Week 1 index</a>
+</div>
