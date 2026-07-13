@@ -28,13 +28,17 @@
 <p>Continue in <code>~/code/week-1/index.html</code> from lesson 1-2. Add a <code>&lt;style&gt;</code> block inside <code>&lt;head&gt;</code>.</p>
 <ol class="steps">
   <li>Make the nav a row with breathing room:
-<pre><code>nav { display: flex; gap: 1rem; }</code></pre>
+<pre><code>nav { display: flex; gap: 1rem; }   /* row with breathing room */</code></pre>
   Save, refresh. <em>You should see</em> the three links side by side with even spacing.</li>
-  <li>Push the nav links to the right edge: add <code>justify-content: flex-end;</code> to the same rule. Refresh. <em>You should see</em> them hug the right side.</li>
-  <li>Give the two project articles a shared container: wrap them in <code>&lt;div class="cards"&gt;…&lt;/div&gt;</code> (inside the projects section). Refresh — <em>nothing visibly changes yet; that's expected.</em></li>
+  <li>Push the nav links to the right edge: add this to the same rule. Refresh.
+<pre><code>justify-content: flex-end;   /* push links to the right */</code></pre>
+  <em>You should see</em> them hug the right side.</li>
+  <li>Give the two project articles a shared container by wrapping them in this (inside the projects section). Refresh — <em>nothing visibly changes yet; that's expected.</em>
+<pre><code>&lt;div class="cards"&gt;
+&lt;/div&gt;</code></pre></li>
   <li>Lay the cards out:
-<pre><code>.cards { display: flex; gap: 1rem; flex-wrap: wrap; }
-.cards article { flex-grow: 1; border: 1px solid #ccc; padding: 1rem; }</code></pre>
+<pre><code>.cards { display: flex; gap: 1rem; flex-wrap: wrap; }   /* cards share a row and wrap */
+.cards article { flex-grow: 1; border: 1px solid #ccc; padding: 1rem; }   /* cards grow and get borders */</code></pre>
   Refresh. <em>You should see</em> two bordered cards side by side.</li>
   <li>Shrink the browser window slowly. <em>Success check:</em> when the window gets narrow, the cards wrap into a single column — that's <code>flex-wrap</code> working; you'll control it precisely in lesson 1-6.</li>
   <li>Optional but excellent practice: play <a href="https://flexboxfroggy.com/">Flexbox Froggy</a> (from the curriculum's Day 1 schedule) up to at least level 13.</li>

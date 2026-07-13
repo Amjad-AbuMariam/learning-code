@@ -28,11 +28,32 @@ nums.forEach(n =&gt; console.log(n)) // prints each; returns nothing — side ef
 <h2>Do it for real (~35 min)</h2>
 <p>In the browser console. Type each, predicting the output first.</p>
 <ol class="steps">
-  <li>Mutators: <code>const arr = [1, 2, 3]</code>, then one per line — <code>arr.pop()</code>, <code>arr.push(3, 4)</code>, <code>arr.shift()</code>, <code>arr.unshift(1)</code>, checking <code>arr</code> after each. <em>Success check:</em> you end at <code>[1, 2, 3, 4]</code> and can say which end each method touched.</li>
-  <li>Prove transformers don't mutate: <code>const nums = [3, 5, 4]; nums.map(n =&gt; n * 2); nums</code>. <em>You should see</em> <code>nums</code> still <code>[3, 5, 4]</code> — the doubled array was returned, not stored.</li>
-  <li>Chain two: from <code>[1,2,3,4,5,6]</code>, produce the doubled evens <code>[4, 8, 12]</code> using <code>filter</code> then <code>map</code>. <em>Check:</em> exactly <code>[4, 8, 12]</code>.</li>
-  <li>The curriculum's reduce challenge: complete <code>function maxOf(nums) { return nums.reduce(/* your reducer here */); }</code> so it finds the <strong>maximum</strong>. <em>Check:</em> <code>maxOf([3, 41, 7])</code> returns <code>41</code> and <code>maxOf([-5, -2])</code> returns <code>-2</code>. (Hint: the accumulator carries the biggest-so-far.)</li>
-  <li>One asker: <code>[1, 2, 4].some(n =&gt; n % 2 === 1)</code> — predict, then run. <em>Check:</em> <code>true</code>, because of the 1.</li>
+  <li>Mutators — run one line at a time, and type <code>arr</code> after each to watch it change:
+<pre><code>const arr = [1, 2, 3]
+arr.pop()        // removes the LAST element
+arr.push(3, 4)   // adds to the end
+arr.shift()      // removes the FIRST element
+arr.unshift(1)   // adds to the start</code></pre>
+  <em>Success check:</em> <code>arr</code> ends as <code>[1, 2, 3, 4]</code> and you can say which end each method touched.</li>
+  <li>Prove transformers don't mutate:
+<pre><code>const nums = [3, 5, 4]
+nums.map(n =&gt; n * 2)   // → [6, 10, 8]
+nums                   // → [3, 5, 4]</code></pre>
+  <em>You should see</em> <code>nums</code> unchanged — the doubled array was returned, not stored.</li>
+  <li>Chain two transformers — fill in both blanks to get the doubled evens:
+<pre><code>const six = [1, 2, 3, 4, 5, 6]
+six.filter(/* keep the evens */).map(/* double them */)</code></pre>
+  <em>Check:</em> exactly <code>[4, 8, 12]</code>.</li>
+  <li>The curriculum's reduce challenge — complete the reducer so it finds the <strong>maximum</strong>:
+<pre><code>function maxOf(nums) {
+  return nums.reduce(/* your reducer here */);
+}
+maxOf([3, 41, 7])   // must return 41
+maxOf([-5, -2])     // must return -2</code></pre>
+  (Hint: the accumulator carries the biggest-so-far.)</li>
+  <li>One asker — predict before you run it:
+<pre><code>[1, 2, 4].some(n =&gt; n % 2 === 1)</code></pre>
+  <em>Check:</em> <code>true</code> — the 1 passes the is-odd test.</li>
 </ol>
 
 <h2>Check yourself — predict the output</h2>

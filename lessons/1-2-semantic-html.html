@@ -40,11 +40,38 @@
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
   <em>Success check:</em> open the file in your browser (double-click it, or drag it onto a browser window). You see an empty page whose tab reads "My profile".</li>
-  <li>Inside <code>&lt;body&gt;</code>, add a <code>&lt;header&gt;</code> containing an <code>&lt;h1&gt;</code> with your name. Save, refresh the browser. <em>You should see</em> your name.</li>
-  <li>Inside the header, below the <code>&lt;h1&gt;</code>, add a <code>&lt;nav&gt;</code> with three links: <code>&lt;a href="#about"&gt;About&lt;/a&gt;</code>, likewise <code>#projects</code> and <code>#contact</code>. Refresh. <em>You should see</em> three links under your name.</li>
-  <li>After the header, add <code>&lt;main&gt;</code> containing one <code>&lt;section id="about"&gt;</code> with an <code>&lt;h2&gt;About&lt;/h2&gt;</code> and a paragraph about you. Refresh. <em>You should see</em> the About block under your nav.</li>
-  <li>Still inside <code>&lt;main&gt;</code>, add a <code>&lt;section id="projects"&gt;</code> with an <code>&lt;h2&gt;Projects&lt;/h2&gt;</code> and two <code>&lt;article&gt;</code>s, each holding an <code>&lt;h3&gt;</code> project name and a one-line description (freeCodeCamp projects count). Refresh. <em>You should see</em> both project blocks below About.</li>
-  <li>Close the page with a <code>&lt;footer id="contact"&gt;</code> containing your email or GitHub link. Refresh. <em>Success check:</em> clicking each nav link scrolls/jumps to its section.</li>
+  <li>Inside <code>&lt;body&gt;</code>, add a <code>&lt;header&gt;</code> containing an <code>&lt;h1&gt;</code> with your name. Save, refresh the browser.
+<pre><code>&lt;header&gt;
+  &lt;h1&gt;Your name&lt;/h1&gt;
+&lt;/header&gt;</code></pre>
+  <em>You should see</em> your name.</li>
+  <li>Inside the header, below the <code>&lt;h1&gt;</code>, add a <code>&lt;nav&gt;</code> with three links. Refresh.
+<pre><code>&lt;nav&gt;
+  &lt;a href="#about"&gt;About&lt;/a&gt;
+  &lt;a href="#projects"&gt;Projects&lt;/a&gt;
+  &lt;a href="#contact"&gt;Contact&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+  <em>You should see</em> three links under your name.</li>
+  <li>After the header, add <code>&lt;main&gt;</code> containing one <code>&lt;section id="about"&gt;</code> with an <code>&lt;h2&gt;About&lt;/h2&gt;</code> and a paragraph about you. Refresh.
+<pre><code>&lt;main&gt;
+  &lt;section id="about"&gt;
+    &lt;h2&gt;About&lt;/h2&gt;
+    &lt;p&gt;A paragraph about you.&lt;/p&gt;
+  &lt;/section&gt;
+&lt;/main&gt;</code></pre>
+  <em>You should see</em> the About block under your nav.</li>
+  <li>Still inside <code>&lt;main&gt;</code>, add a <code>&lt;section id="projects"&gt;</code> with an <code>&lt;h2&gt;Projects&lt;/h2&gt;</code> and two <code>&lt;article&gt;</code>s, each holding an <code>&lt;h3&gt;</code> project name and a one-line description (freeCodeCamp projects count). Refresh.
+<pre><code>&lt;section id="projects"&gt;
+  &lt;h2&gt;Projects&lt;/h2&gt;
+  &lt;article&gt;&lt;h3&gt;Project name&lt;/h3&gt;&lt;p&gt;One-line description.&lt;/p&gt;&lt;/article&gt;
+  &lt;article&gt;&lt;h3&gt;Another project&lt;/h3&gt;&lt;p&gt;One-line description.&lt;/p&gt;&lt;/article&gt;
+&lt;/section&gt;</code></pre>
+  <em>You should see</em> both project blocks below About.</li>
+  <li>Close the page with a <code>&lt;footer id="contact"&gt;</code> containing your email or GitHub link. Refresh.
+<pre><code>&lt;footer id="contact"&gt;
+  Your email or GitHub link
+&lt;/footer&gt;</code></pre>
+  <em>Success check:</em> clicking each nav link scrolls/jumps to its section.</li>
   <li>Audit it — <strong>in Chrome or Chromium</strong> (Lighthouse ships in Chromium-based browsers; Firefox doesn't have it — if Firefox is your daily browser, open the page in Chromium just for audits): press <kbd>F12</kbd> → find the <strong>Lighthouse</strong> tab (it may hide behind <code>»</code>) → check only <strong>Accessibility</strong> → Analyze. <em>You should see</em> a score. Read the top suggestion — fix it if it's one you understand, ask your teacher if not.</li>
 </ol>
 

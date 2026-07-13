@@ -23,27 +23,79 @@ command   flag      argument
 
 <p><strong>Part A — Orient (pwd, ls, cd)</strong></p>
 <ol class="steps">
-  <li>Open a terminal. Type <code>pwd</code> and press Enter. <em>You should see</em> your home folder's absolute path — something like <code>/home/yourname</code>. (Check with <code>whoami</code> if unsure of your username.)</li>
-  <li>Type <code>ls</code>. <em>You should see</em> your home folders, including the <code>code</code> folder from lesson 1-2.</li>
-  <li>Type <code>ls -a</code>. <em>You should see</em> extra entries starting with a dot — hidden files. (You'll meet <code>.git</code> this way tomorrow.)</li>
-  <li>Type <code>cd code/week-1</code> then <code>pwd</code>. <em>You should see</em> the path ending in <code>/code/week-1</code>, and <code>ls</code> shows <code>index.html</code> — the file you built in lessons 1-2/1-3, reached from the terminal side.</li>
-  <li>Go home three ways, running <code>pwd</code> after each way. Way 1: <code>cd ..</code> then <code>cd ..</code> again (relative, one level at a time — you land home). Way 2: <code>cd ~/code/week-1</code> to jump back down, then plain <code>cd</code> (no argument always means home). Way 3: <code>cd ~/code/week-1</code> again, then <code>cd ~</code>. <em>Success check:</em> you can predict each <code>pwd</code> output before pressing Enter.</li>
+  <li>Open a terminal. Type these commands:
+<pre><code>pwd          # your home folder's absolute path
+whoami       # your username, if unsure</code></pre>
+  <em>You should see</em> your home folder's absolute path — something like <code>/home/yourname</code>.</li>
+  <li>Type this command:
+<pre><code>ls           # list your home folders</code></pre>
+  <em>You should see</em> your home folders, including the <code>code</code> folder from lesson 1-2.</li>
+  <li>Type this command:
+<pre><code>ls -a         # include hidden files</code></pre>
+  <em>You should see</em> extra entries starting with a dot — hidden files. (You'll meet <code>.git</code> this way tomorrow.)</li>
+  <li>Type these commands:
+<pre><code>cd code/week-1   # move into the week-1 folder
+pwd              # show the current path
+ls               # list the profile page</code></pre>
+  <em>You should see</em> the path ending in <code>/code/week-1</code>, and <code>ls</code> shows <code>index.html</code> — the file you built in lessons 1-2/1-3, reached from the terminal side.</li>
+  <li>Go home three ways, running <code>pwd</code> after each way:
+<pre><code>cd ..
+cd ..
+pwd              # Way 1: relative, one level at a time
+cd ~/code/week-1
+cd
+pwd              # Way 2: plain cd means home
+cd ~/code/week-1
+cd ~
+pwd              # Way 3: ~ means home</code></pre>
+  <em>Success check:</em> you can predict each <code>pwd</code> output before pressing Enter.</li>
 </ol>
 
 <p><strong>Part B — Create and inspect (mkdir, touch, echo, cat)</strong></p>
 <ol class="steps" start="6">
-  <li>From home: <code>mkdir -p code/terminal-practice</code>, then <code>cd code/terminal-practice</code>. <em>You should see</em> <code>pwd</code> ending in <code>terminal-practice</code>. (<code>-p</code> creates parents as needed and doesn't complain if they exist.)</li>
-  <li><code>touch notes.md</code> then <code>ls</code>. <em>You should see</em> <code>notes.md</code>.</li>
-  <li>A caution before the next command: <code>&gt;</code> <em>replaces</em> a file's entire content, so know what's in a file before redirecting into it — here <code>notes.md</code> is the empty file you just created, so nothing can be lost. Now: <code>echo "terminal day one" &gt; notes.md</code> then <code>cat notes.md</code>. <em>You should see</em> the line printed back. <code>&gt;&gt;</code> appends instead: <code>echo "second line" &gt;&gt; notes.md</code>, <code>cat notes.md</code> — <em>two lines now.</em></li>
+  <li>From home, type:
+<pre><code>mkdir -p code/terminal-practice   # create the practice folder and parents
+cd code/terminal-practice          # enter it
+pwd                                # show the current path</code></pre>
+  <em>You should see</em> <code>pwd</code> ending in <code>terminal-practice</code>. (<code>-p</code> creates parents as needed and doesn't complain if they exist.)</li>
+  <li>Type:
+<pre><code>touch notes.md   # create an empty file
+ls               # list the file</code></pre>
+  <em>You should see</em> <code>notes.md</code>.</li>
+  <li>A caution before the next command: <code>&gt;</code> <em>replaces</em> a file's entire content, so know what's in a file before redirecting into it — here <code>notes.md</code> is the empty file you just created, so nothing can be lost. Type:
+<pre><code>echo "terminal day one" &gt; notes.md   # replace the empty file
+cat notes.md                          # print its contents
+echo "second line" &gt;&gt; notes.md       # append instead
+cat notes.md                          # print both lines</code></pre>
+  <em>You should see</em> the line printed back, then <em>two lines now.</em></li>
 </ol>
 
 <p><strong>Part C — Move, copy, delete (mv, cp, rm)</strong></p>
 <ol class="steps" start="9">
-  <li><code>cp notes.md backup.md</code> then <code>ls</code>. <em>You should see</em> both files.</li>
-  <li><code>mv backup.md old-notes.md</code> then <code>ls</code>. <em>You should see</em> the file renamed — <code>mv</code> to a new name is how you rename.</li>
-  <li><code>mkdir archive</code>, <code>mv old-notes.md archive</code>, <code>ls archive</code>. <em>You should see</em> <code>old-notes.md</code> inside — same command, moving instead of renaming. No success message is normal: in the shell, <em>no news is good news</em>.</li>
-  <li>Deletion, carefully. <code>rm</code> has <strong>no trash can and no undo</strong>. The safe ritual: <code>ls</code> first, read what you're about to remove, then delete. Run <code>ls archive</code>, then <code>rm archive/old-notes.md</code>, then <code>ls archive</code> — <em>empty now.</em> The curriculum's safer alternative when unsure: <code>gio trash FILE</code> sends it to the desktop trash instead.</li>
-  <li>Clean up the whole practice folder: <code>cd ~</code>, <code>ls code</code> (confirm <code>terminal-practice</code> is what you think it is), then <code>rm -r code/terminal-practice</code> (<code>-r</code> = recursive, needed for folders). <em>Success check:</em> <code>ls code</code> no longer lists it, and <code>week-1</code> is untouched.</li>
+  <li>Type:
+<pre><code>cp notes.md backup.md   # copy the file
+ls                      # list both files</code></pre>
+  <em>You should see</em> both files.</li>
+  <li>Type:
+<pre><code>mv backup.md old-notes.md   # rename the file
+ls                           # list the renamed file</code></pre>
+  <em>You should see</em> the file renamed — <code>mv</code> to a new name is how you rename.</li>
+  <li>Type:
+<pre><code>mkdir archive              # create a destination folder
+mv old-notes.md archive     # move the file into it
+ls archive                  # list the destination</code></pre>
+  <em>You should see</em> <code>old-notes.md</code> inside — same command, moving instead of renaming. No success message is normal: in the shell, <em>no news is good news</em>.</li>
+  <li>Deletion, carefully. <code>rm</code> has <strong>no trash can and no undo</strong>. The safe ritual: <code>ls</code> first, read what you're about to remove, then delete. Run:
+<pre><code>ls archive                    # confirm the file to remove
+rm archive/old-notes.md       # delete it permanently
+ls archive                    # verify it is empty</code></pre>
+  <em>Empty now.</em> The curriculum's safer alternative when unsure: <code>gio trash FILE</code> sends it to the desktop trash instead.</li>
+  <li>Clean up the whole practice folder. Confirm <code>terminal-practice</code> is what you think it is before the destructive command:
+<pre><code>cd ~
+ls code                         # verify the folder before deleting
+rm -r code/terminal-practice    # -r = recursive, needed for folders
+ls code                         # verify cleanup; week-1 is untouched</code></pre>
+  <em>Success check:</em> <code>ls code</code> no longer lists it, and <code>week-1</code> is untouched.</li>
 </ol>
 
 <div class="aside">You'll eventually meet <code>rm -rf</code> in the wild. The curriculum's own warning applies: it deletes without asking and without mercy — never run it on a path you haven't just <code>ls</code>'d, and never anywhere near <code>/</code>. When in doubt, <code>gio trash</code>.</div>

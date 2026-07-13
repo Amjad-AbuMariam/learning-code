@@ -29,6 +29,7 @@ lessons/<week>-<lesson>-<title>.html # e.g. lessons/1-4-terminal.html
 5. **No hardcoded environments.** No usernames, no `/home/<name>`, no assumed folder that a previous lesson didn't explicitly create. First use of a workspace folder is created inside the lesson itself ("create `~/code/week-1`; you'll reuse it all week").
 6. **Interactive commands get their interaction described** (what the prompt looks like, what to type, how to exit) in the body before the student runs them: `git add -p`, `man`, `less`, REPLs. Tooltips cover terms; prompt transcripts stay in the body.
 7. **Destructive commands** (`rm`, `>` redirect over existing files, force flags) are always preceded by a safety line and a verification step (`ls` / `cat` first), and the safer alternative is taught alongside (`gio trash`).
+8. **Code lives in blocks, never woven into prose.** Anything the student must type gets its own `<pre><code>` block inside the step — one command per line, with an aligned `//` or `#` comment saying what it does or what it returns. Inline `<code>` is only for *referring* to names, files, and values. A step's prose is at most one framing sentence before the block and one success check after it. A step whose commands wrap across multiple prose lines is a defect.
 
 ## Check yourself: active over passive
 

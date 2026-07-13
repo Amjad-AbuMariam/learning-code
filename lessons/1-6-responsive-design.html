@@ -29,18 +29,45 @@ nav { flex-direction: column; }
 <h2>Do it for real (~25 min)</h2>
 <p>Two threads from here on: the CSS work, and putting <code>~/code/week-1</code> under git — like everything you'll ever build from now on.</p>
 <ol class="steps">
-  <li>Open a terminal: <code>cd ~/code/week-1</code> (confirm with <code>pwd</code>), then <code>git init</code>. <em>You should see</em> "Initialized empty Git repository…".</li>
-  <li>Snapshot the page as it stands: <code>git add index.html</code>, then <code>git commit -m "Profile page from lessons 1-2 and 1-3"</code>. <em>Check:</em> <code>git status</code> now says "nothing to commit, working tree clean".</li>
-  <li>Add the viewport meta tag inside <code>&lt;head&gt;</code>, next to <code>&lt;meta charset&gt;</code>. <em>Success check:</em> press <kbd>F12</kbd>, click the phone/tablet icon (device toolbar), pick a phone — text is readable, not a zoomed-out miniature.</li>
-  <li>Make the nav mobile-first: change your nav rule to <code>flex-direction: column;</code> (keep <code>display: flex; gap: 1rem;</code>). Refresh in phone view. <em>You should see</em> the links stacked vertically.</li>
+  <li>Open a terminal and type:
+<pre><code>cd ~/code/week-1   # enter the profile page folder
+pwd                # confirm the location
+git init            # initialize git</code></pre>
+  <em>You should see</em> "Initialized empty Git repository…".</li>
+  <li>Snapshot the page as it stands:
+<pre><code>git add index.html
+git commit -m "Profile page from lessons 1-2 and 1-3"
+git status          # nothing to commit, working tree clean</code></pre>
+  <em>Check:</em> <code>git status</code> now says "nothing to commit, working tree clean".</li>
+  <li>Add the viewport meta tag inside <code>&lt;head&gt;</code>, next to <code>&lt;meta charset&gt;</code>:
+<pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</code></pre>
+  <em>Success check:</em> press <kbd>F12</kbd>, click the phone/tablet icon (device toolbar), pick a phone — text is readable, not a zoomed-out miniature.</li>
+  <li>Make the nav mobile-first by changing your nav rule (keep the other declarations):
+<pre><code>nav {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}</code></pre>
+  Refresh in phone view. <em>You should see</em> the links stacked vertically.</li>
   <li>Add the desktop override at the end of your <code>&lt;style&gt;</code> block:
 <pre><code>@media (min-width: 40rem) {
   nav { flex-direction: row; justify-content: flex-end; }
 }</code></pre>
   <em>Success check:</em> drag the device-toolbar width (or toggle it off): links stack when narrow, become a right-aligned row when wide.</li>
-  <li>Give the project cards a minimum dignity: add <code>min-width: 15rem;</code> to <code>.cards article</code>. <em>You should see</em> (in phone view) the cards refuse to squeeze thinner and wrap into a column instead — <code>flex-wrap</code> from 1-3 doing the work.</li>
-  <li>Commit: <code>git add index.html</code>, <code>git commit -m "Make profile page responsive"</code>. <em>Check:</em> <code>git log --oneline</code> shows both commits.</li>
-  <li>Publish the repo — from memory of exercise 2 in lesson 1-5: create an empty <code>week-1</code> repository on GitHub (no checkboxes), then, in the same terminal (confirm <code>pwd</code> still ends in <code>/code/week-1</code>), run the three "push an existing repository" lines GitHub shows. <em>Success check:</em> your page's code is visible on GitHub. Lesson 1-9 opens a pull request against this very repo.</li>
+  <li>Give the project cards a minimum dignity by adding this to <code>.cards article</code>:
+<pre><code>min-width: 15rem;   /* keep cards from squeezing too thin */</code></pre>
+  <em>You should see</em> (in phone view) the cards refuse to squeeze thinner and wrap into a column instead — <code>flex-wrap</code> from 1-3 doing the work.</li>
+  <li>Commit the responsive changes:
+<pre><code>git add index.html
+git commit -m "Make profile page responsive"
+git log --oneline       # show both commits</code></pre>
+  <em>Check:</em> <code>git log --oneline</code> shows both commits.</li>
+  <li>Publish the repo — from memory of exercise 2 in lesson 1-5: create an empty <code>week-1</code> repository on GitHub (no checkboxes), then, in the same terminal, confirm your location and run the three "push an existing repository" lines GitHub shows:
+<pre><code>pwd   # should end in /code/week-1
+git remote add origin …
+git branch -M main
+git push -u origin main</code></pre>
+  <em>Success check:</em> your page's code is visible on GitHub. Lesson 1-9 opens a pull request against this very repo.</li>
 </ol>
 
 <h2>Check yourself — predict the output</h2>

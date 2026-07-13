@@ -24,32 +24,73 @@ git config --global user.email "you@example.com"</code></pre>
 <h2>Exercise 1 — Local only: the snapshot cycle (~20 min)</h2>
 <p>From the workshop's exercise 1, in your terminal:</p>
 <ol class="steps">
-  <li><code>cd ~/code</code>, then <code>mkdir my-first-git-repo</code> and <code>cd my-first-git-repo</code>. <em>Check:</em> <code>pwd</code> ends in <code>my-first-git-repo</code>.</li>
-  <li><code>git init</code>. <em>You should see</em> "Initialized empty Git repository…". <code>ls -a</code> now shows a <code>.git</code> folder — that's the entire history database.</li>
-  <li><code>touch index.html</code>, then <code>git status</code>. <em>You should see</em> <code>index.html</code> in red under "Untracked files" — git sees it but isn't recording it yet.</li>
-  <li><code>git add index.html</code>, then <code>git status</code> again. <em>You should see</em> it turn green under "Changes to be committed" — the <span class="term" data-tip="The waiting room between your edits and a commit: you choose exactly what the next snapshot contains.">staging area</span>.</li>
-  <li><code>git commit -m "Add index.html"</code>. <em>You should see</em> a summary line with the message and "1 file changed".</li>
-  <li><code>git log</code>. <em>You should see</em> your commit with author, date, message. If the view takes the whole screen, it's a scroller: <kbd>↑</kbd>/<kbd>↓</kbd> to move, <kbd>q</kbd> to quit.</li>
-  <li>Repeat the cycle twice on your own, exactly as the workshop asks: (a) create any second file, stage, commit; (b) delete <code>index.html</code> — run <code>ls</code> first to confirm what you're removing (the 1-4 ritual; safe here anyway, a committed file can always be restored by git), then <code>rm index.html</code>, then <code>git add index.html</code> (yes — you stage a deletion too), commit as "Delete index.html". <em>Success check:</em> <code>git log</code> shows three commits, newest first.</li>
+  <li>Create and enter the repository:
+<pre><code>cd ~/code
+mkdir my-first-git-repo
+cd my-first-git-repo
+pwd                  # ends in my-first-git-repo</code></pre>
+  <em>Check:</em> <code>pwd</code> ends in <code>my-first-git-repo</code>.</li>
+  <li>Initialize it and inspect hidden files:
+<pre><code>git init              # Initialized empty Git repository…
+ls -a                 # shows the .git folder</code></pre>
+  <em>You should see</em> "Initialized empty Git repository…". <code>.git</code> is the entire history database.</li>
+  <li>Create a file and inspect its status:
+<pre><code>touch index.html
+git status             # index.html is red under Untracked files</code></pre>
+  <em>You should see</em> <code>index.html</code> in red under "Untracked files" — git sees it but isn't recording it yet.</li>
+  <li>Stage the file and inspect status again:
+<pre><code>git add index.html
+git status             # index.html is green under Changes to be committed</code></pre>
+  <em>You should see</em> it turn green under "Changes to be committed" — the <span class="term" data-tip="The waiting room between your edits and a commit: you choose exactly what the next snapshot contains.">staging area</span>.</li>
+  <li>Commit the staged file:
+<pre><code>git commit -m "Add index.html"</code></pre>
+  <em>You should see</em> a summary line with the message and "1 file changed".</li>
+  <li>Inspect the history:
+<pre><code>git log</code></pre>
+  <em>You should see</em> your commit with author, date, message. If the view takes the whole screen, it's a scroller: <kbd>↑</kbd>/<kbd>↓</kbd> to move, <kbd>q</kbd> to quit.</li>
+  <li>Repeat the cycle twice on your own, exactly as the workshop asks: (a) create any second file, stage, commit; (b) delete <code>index.html</code> — run <code>ls</code> first to confirm what you're removing (the 1-4 ritual; safe here anyway, a committed file can always be restored by git), then run:
+<pre><code>rm index.html
+git add index.html
+git commit -m "Delete index.html"</code></pre>
+  (Yes — you stage a deletion too.) <em>Success check:</em> <code>git log</code> shows three commits, newest first.</li>
 </ol>
 
 <h2>Exercise 2 — Connect to GitHub (~20 min)</h2>
 <ol class="steps">
   <li>On <a href="https://github.com">github.com</a> (create an account first if needed — ask your teacher if login/authentication gives you trouble; that's normal the first time), click <strong>+</strong> → New repository, name it <code>my-first-git-repo</code>, and <strong>leave every checkbox unchecked</strong> (no README), exactly as the workshop says. <em>You should see</em> a "…or push an existing repository from the command line" instructions page.</li>
-  <li>Copy the three lines GitHub shows under "push an existing repository" and run them in your repo folder. They do: name the remote (<code>git remote add origin …</code>), rename your branch to <code>main</code>, and upload (<code>git push -u origin main</code>). The push asks you to authenticate — what you'll see depends on your setup: either a browser window opens asking you to authorize, or the terminal prompts for your GitHub username and a token. If the terminal asks for a "password", stop there: GitHub no longer accepts account passwords on the command line — ask your teacher to set up SSH keys or a token with you (five minutes, once ever).</li>
+  <li>Copy the three lines GitHub shows under "push an existing repository" and run them in your repo folder:
+<pre><code>git remote add origin …   # name the remote
+git branch -M main        # rename the branch
+git push -u origin main   # upload</code></pre>
+  The push asks you to authenticate — what you'll see depends on your setup: either a browser window opens asking you to authorize, or the terminal prompts for your GitHub username and a token. If the terminal asks for a "password", stop there: GitHub no longer accepts account passwords on the command line — ask your teacher to set up SSH keys or a token with you (five minutes, once ever).</li>
   <li>Refresh the repository page on GitHub. <em>Success check:</em> your files and all three commit messages are visible online.</li>
 </ol>
 
 <h2>Exercise 3 — Branch, pull request, merge (~30 min)</h2>
 <ol class="steps">
   <li>On GitHub: create a <em>new</em> repository called <code>workflow-practice</code>, this time <strong>with</strong> a README checked.</li>
-  <li>On the repo page, click the green <strong>Code</strong> button and copy the URL. Then locally: <code>cd ~/code</code>, then <code>git clone URL</code> with URL replaced by what you copied — it ends up like <code>git clone https://github.com/yourusername/workflow-practice.git</code>. <em>You should see</em> a short progress report; <code>cd workflow-practice</code> and <code>ls</code> shows <code>README.md</code>.</li>
-  <li>Create and switch to a branch: <code>git switch -c add-hello-page</code>. <em>You should see</em> "Switched to a new branch". <span class="term" data-tip="The coursebook (and much of the internet) writes git checkout -b — the older command for the same thing. git switch -c is today's clearer form.">Coursebook note</span>: the workshop writes <code>git checkout -b</code>; same effect, legacy spelling.</li>
-  <li>Create <code>hello.html</code> containing <code>&lt;h1&gt;Hello world&lt;/h1&gt;</code> (editor or <code>echo</code> — your choice now). Stage and commit it: <code>git add hello.html</code>, <code>git commit -m "Add hello page"</code>.</li>
-  <li>Publish the branch: <code>git push -u origin add-hello-page</code>. <em>You should see</em> the push output end with a GitHub URL for creating a pull request.</li>
+  <li>On the repo page, click the green <strong>Code</strong> button and copy the URL. Then locally run (the clone line ends up like <code>git clone https://github.com/yourusername/workflow-practice.git</code>):
+<pre><code>cd ~/code
+git clone URL                 # replace URL with what you copied
+cd workflow-practice
+ls                            # shows README.md</code></pre>
+  <em>You should see</em> a short clone progress report, then <code>README.md</code> in the listing.</li>
+  <li>Create and switch to a branch:
+<pre><code>git switch -c add-hello-page</code></pre>
+  <em>You should see</em> "Switched to a new branch". <span class="term" data-tip="The coursebook (and much of the internet) writes git checkout -b — the older command for the same thing. git switch -c is today's clearer form.">Coursebook note</span>: the workshop writes <code>git checkout -b</code>; same effect, legacy spelling.</li>
+  <li>Create <code>hello.html</code> containing <code>&lt;h1&gt;Hello world&lt;/h1&gt;</code> (editor or <code>echo</code> — your choice now). Stage and commit it:
+<pre><code>git add hello.html
+git commit -m "Add hello page"</code></pre></li>
+  <li>Publish the branch:
+<pre><code>git push -u origin add-hello-page</code></pre>
+  <em>You should see</em> the push output end with a GitHub URL for creating a pull request.</li>
   <li>Open that URL (or the yellow "Compare &amp; pull request" banner on the repo page). Read the <strong>Files changed</strong> tab — this diff is exactly what a reviewer sees. Click <strong>Create pull request</strong>.</li>
   <li>Click <strong>Merge pull request</strong> → Confirm, then <strong>Delete branch</strong> (the button GitHub offers right after merging — remote branches are deleted from here). <em>You should see</em> the PR marked purple "Merged".</li>
-  <li>Sync your machine: <code>git switch main</code>, then <code>git pull</code>. <em>You should see</em> <code>hello.html</code> arrive. Finally delete the local branch: <code>git branch -d add-hello-page</code>. <em>Success check:</em> <code>git log --oneline</code> shows the merge on main, and <code>git branch</code> lists only <code>main</code>.</li>
+  <li>Sync your machine and delete the local branch:
+<pre><code>git switch main
+git pull
+git branch -d add-hello-page</code></pre>
+  <em>You should see</em> <code>hello.html</code> arrive. <em>Success check:</em> <code>git log --oneline</code> shows the merge on main, and <code>git branch</code> lists only <code>main</code>.</li>
   <li>The workshop says: redo the loop once more, styling the page — branch, edit, commit, push, PR, merge, sync, delete both branches. Do it from memory; peek at the <a href="../reference/git-branch-pr-cheatsheet.html">cheat sheet</a> only when stuck. <em>Success check:</em> a second merged PR on GitHub, and <code>git branch</code> again lists only <code>main</code>.</li>
 </ol>
 

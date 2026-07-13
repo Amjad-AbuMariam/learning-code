@@ -29,8 +29,21 @@
 <h2>How to work (~2 days)</h2>
 <ol class="steps">
   <li><strong>Design first (Day 3's UX slot):</strong> sketch the layout before coding — Figma if you want the industry tool (<a href="https://www.youtube.com/watch?v=Cx2dkpBxst8&amp;list=PLXDU_eVOJTx7QHLShNqIXL1Cgbxj7HlN4&amp;index=2">curriculum's starter playlist</a>), paper if you don't. Alongside it, write three one-line <span class="term" data-tip="A need phrased from the visitor's side: 'As a recruiter, I want to scan projects in 10 seconds, so that I decide to keep reading.' The curriculum's user-journey outcome.">user stories</span> for your visitors — they decide your nav order. <em>Success check:</em> you can point at where each of the five parts lives and which story it serves, before writing a line.</li>
-  <li>Create the <code>portfolio</code> repo on GitHub with a README. In a terminal: <code>cd ~/code</code>, <code>git clone</code> + the repo's URL (1-5 exercise 3 form), <code>cd portfolio</code>. Copy your page in as the starting point: <code>cp ~/code/week-1/index.html ~/code/portfolio/</code>. <em>Check:</em> <code>ls</code> shows <code>index.html</code> and <code>README.md</code>. Commit and push the baseline on <code>main</code> — the one exception to the branch rule: <code>git add index.html</code>, <code>git commit -m "Import week-1 profile page as baseline"</code>, <code>git push</code>. <em>Check:</em> the file is visible on GitHub.</li>
-  <li>Work in vertical slices, one branch + PR each: <code>nav-and-layout</code>, <code>about-section</code>, <code>projects-section</code>, … Merge each before starting the next. <em>Check after each merge:</em> in the terminal, from <code>~/code/portfolio</code>: <code>git switch main</code>, <code>git pull</code>, then open <code>index.html</code> in the browser — the merged state always works.</li>
+  <li>Create the <code>portfolio</code> repo on GitHub with a README. In a terminal, type:
+<pre><code>cd ~/code
+git clone URL                         # URL from the new portfolio repo
+cd portfolio
+cp ~/code/week-1/index.html ~/code/portfolio/   # copy the starting point
+ls                                    # index.html and README.md</code></pre>
+  <em>Check:</em> <code>ls</code> shows <code>index.html</code> and <code>README.md</code>. Commit and push the baseline on <code>main</code> — the one exception to the branch rule:
+<pre><code>git add index.html
+git commit -m "Import week-1 profile page as baseline"
+git push</code></pre>
+  <em>Check:</em> the file is visible on GitHub.</li>
+  <li>Work in vertical slices, one branch + PR each: <code>nav-and-layout</code>, <code>about-section</code>, <code>projects-section</code>, … Merge each before starting the next. After each merge, in the terminal from <code>~/code/portfolio</code>, type:
+<pre><code>git switch main
+git pull</code></pre>
+  Then open <code>index.html</code> in the browser. <em>Check after each merge:</em> the merged state always works.</li>
   <li>Run Lighthouse (<kbd>F12</kbd> → Lighthouse tab in Chromium, exactly as in lesson 1-2) on your page after every merged slice, not at the end. Fixing accessibility incrementally is minutes; retrofitting it is days.</li>
   <li><strong>Get reviewed.</strong> The curriculum's <a href="../curriculum/coursebook/week-1/codereviewintro.md">code review guide</a>: reviewers read your repo, raise issues, phrase suggestions as questions. Ask your teacher (the agent) to review each PR before you merge it — and answer its questions in the PR conversation, don't just fix silently. Etiquette works both ways.</li>
 </ol>

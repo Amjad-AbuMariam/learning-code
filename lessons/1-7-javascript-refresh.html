@@ -34,9 +34,18 @@ false                    // arrays compare by reference, not content
 <h2>Do it for real (~15 min)</h2>
 <p>In the console:</p>
 <ol class="steps">
-  <li>Declare <code>const profile = "your name"</code> then try <code>profile = "other"</code>. <em>You should see</em> a TypeError naming the constant.</li>
-  <li>Run <code>const skills = ["html", "css"]; skills.push("git"); skills</code>. <em>You should see</em> all three items — mutation through a const label works.</li>
-  <li>Run <code>typeof null</code>. <em>You should see</em> <code>"object"</code> — a famous historical bug kept for compatibility; recognize it so it never confuses you.</li>
+  <li>Declare a constant, then try to reassign it:
+<pre><code>const profile = "your name"
+profile = "other"       // TypeError: a const cannot be reassigned</code></pre>
+  <em>You should see</em> a TypeError naming the constant.</li>
+  <li>Run:
+<pre><code>const skills = ["html", "css"]
+skills.push("git")      // mutate the array through a const label
+skills                    // ["html", "css", "git"]</code></pre>
+  <em>You should see</em> all three items — mutation through a const label works.</li>
+  <li>Run:
+<pre><code>typeof null              // "object"</code></pre>
+  <em>You should see</em> <code>"object"</code> — a famous historical bug kept for compatibility; recognize it so it never confuses you.</li>
 </ol>
 
 <h2>Check yourself</h2>
